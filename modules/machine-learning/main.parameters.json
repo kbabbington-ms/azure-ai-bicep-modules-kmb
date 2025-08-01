@@ -1,0 +1,249 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "workspaceName": {
+      "value": "ml-workspace-demo"
+    },
+    "location": {
+      "value": "East US 2"
+    },
+    "environment": {
+      "value": "dev"
+    },
+    "tags": {
+      "value": {
+        "Project": "AI-Platform",
+        "CostCenter": "IT-AI",
+        "Owner": "AI-Team"
+      }
+    },
+    "friendlyName": {
+      "value": "Demo AI/ML Workspace"
+    },
+    "workspaceDescription": {
+      "value": "Enterprise AI/ML workspace with comprehensive security and monitoring"
+    },
+    "hbiWorkspace": {
+      "value": true
+    },
+    "allowPublicAccessWhenBehindVnet": {
+      "value": false
+    },
+    "publicNetworkAccess": {
+      "value": "Disabled"
+    },
+    "v1LegacyMode": {
+      "value": false
+    },
+    "enableDataIsolation": {
+      "value": true
+    },
+    "applicationInsightsId": {
+      "value": "/subscriptions/{subscription-id}/resourceGroups/{rg-name}/providers/Microsoft.Insights/components/{appinsights-name}"
+    },
+    "containerRegistryId": {
+      "value": "/subscriptions/{subscription-id}/resourceGroups/{rg-name}/providers/Microsoft.ContainerRegistry/registries/{acr-name}"
+    },
+    "keyVaultId": {
+      "value": "/subscriptions/{subscription-id}/resourceGroups/{rg-name}/providers/Microsoft.KeyVault/vaults/{kv-name}"
+    },
+    "storageAccountId": {
+      "value": "/subscriptions/{subscription-id}/resourceGroups/{rg-name}/providers/Microsoft.Storage/storageAccounts/{storage-name}"
+    },
+    "additionalWorkspaceStorageAccounts": {
+      "value": []
+    },
+    "managedIdentityType": {
+      "value": "SystemAssigned,UserAssigned"
+    },
+    "userAssignedIdentities": {
+      "value": [
+        "/subscriptions/{subscription-id}/resourceGroups/{rg-name}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identity-name}"
+      ]
+    },
+    "primaryUserAssignedIdentity": {
+      "value": "/subscriptions/{subscription-id}/resourceGroups/{rg-name}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{primary-identity-name}"
+    },
+    "enableCustomerManagedEncryption": {
+      "value": true
+    },
+    "encryptionKeyIdentifier": {
+      "value": "https://{kv-name}.vault.azure.net/keys/{key-name}/{key-version}"
+    },
+    "encryptionIdentityId": {
+      "value": "/subscriptions/{subscription-id}/resourceGroups/{rg-name}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{encryption-identity-name}"
+    },
+    "encryptionStatus": {
+      "value": "Enabled"
+    },
+    "enableManagedNetwork": {
+      "value": true
+    },
+    "managedNetworkIsolationMode": {
+      "value": "AllowOnlyApprovedOutbound"
+    },
+    "firewallSku": {
+      "value": "Standard"
+    },
+    "outboundRules": {
+      "value": {
+        "azureServiceRule": {
+          "type": "ServiceTag",
+          "category": "Required",
+          "destination": {
+            "serviceTag": "AzureActiveDirectory",
+            "protocol": "TCP",
+            "portRanges": "443"
+          }
+        }
+      }
+    },
+    "enablePrivateEndpoints": {
+      "value": true
+    },
+    "vnetId": {
+      "value": "/subscriptions/{subscription-id}/resourceGroups/{rg-name}/providers/Microsoft.Network/virtualNetworks/{vnet-name}"
+    },
+    "privateEndpointSubnetId": {
+      "value": "/subscriptions/{subscription-id}/resourceGroups/{rg-name}/providers/Microsoft.Network/virtualNetworks/{vnet-name}/subnets/{pe-subnet-name}"
+    },
+    "privateDnsZoneIds": {
+      "value": {
+        "api": "/subscriptions/{subscription-id}/resourceGroups/{rg-name}/providers/Microsoft.Network/privateDnsZones/privatelink.api.azureml.ms",
+        "notebooks": "/subscriptions/{subscription-id}/resourceGroups/{rg-name}/providers/Microsoft.Network/privateDnsZones/privatelink.notebooks.azure.net"
+      }
+    },
+    "privateEndpointNameSuffix": {
+      "value": ""
+    },
+    "imageBuildCompute": {
+      "value": ""
+    },
+    "enableServerlessCompute": {
+      "value": true
+    },
+    "serverlessComputeCustomSubnet": {
+      "value": "/subscriptions/{subscription-id}/resourceGroups/{rg-name}/providers/Microsoft.Network/virtualNetworks/{vnet-name}/subnets/{compute-subnet-name}"
+    },
+    "serverlessComputeNoPublicIP": {
+      "value": true
+    },
+    "enableFeatureStore": {
+      "value": false
+    },
+    "offlineStoreConnectionName": {
+      "value": ""
+    },
+    "onlineStoreConnectionName": {
+      "value": ""
+    },
+    "sparkRuntimeVersion": {
+      "value": ""
+    },
+    "enableCustomCosmosDbSettings": {
+      "value": false
+    },
+    "cosmosDbCollectionsThroughput": {
+      "value": 400
+    },
+    "enableWorkspaceHub": {
+      "value": false
+    },
+    "defaultWorkspaceResourceGroup": {
+      "value": ""
+    },
+    "associatedWorkspaces": {
+      "value": []
+    },
+    "hubResourceId": {
+      "value": ""
+    },
+    "enableDiagnostics": {
+      "value": true
+    },
+    "logAnalyticsWorkspaceId": {
+      "value": "/subscriptions/{subscription-id}/resourceGroups/{rg-name}/providers/Microsoft.OperationalInsights/workspaces/{law-name}"
+    },
+    "diagnosticsStorageAccountId": {
+      "value": "/subscriptions/{subscription-id}/resourceGroups/{rg-name}/providers/Microsoft.Storage/storageAccounts/{diag-storage-name}"
+    },
+    "eventHubAuthorizationRuleId": {
+      "value": ""
+    },
+    "eventHubName": {
+      "value": ""
+    },
+    "diagnosticLogsCategories": {
+      "value": [
+        "AmlComputeClusterEvent",
+        "AmlComputeClusterNodeEvent",
+        "AmlComputeJobEvent",
+        "AmlComputeCpuGpuUtilization",
+        "AmlRunStatusChangedEvent",
+        "ModelsChangeEvent",
+        "ModelsReadEvent",
+        "ModelsActionEvent",
+        "DeploymentReadEvent",
+        "DeploymentEventACI",
+        "DeploymentEventAKS",
+        "InferencingOperationAKS",
+        "InferencingOperationACI"
+      ]
+    },
+    "diagnosticMetricsCategories": {
+      "value": [
+        "AllMetrics"
+      ]
+    },
+    "diagnosticLogsRetentionInDays": {
+      "value": 90
+    },
+    "enableRbacAssignments": {
+      "value": true
+    },
+    "workspaceAdministrators": {
+      "value": [
+        {
+          "principalId": "{admin-principal-id}",
+          "principalType": "User"
+        }
+      ]
+    },
+    "workspaceContributors": {
+      "value": [
+        {
+          "principalId": "{contributor-principal-id}",
+          "principalType": "Group"
+        }
+      ]
+    },
+    "workspaceReaders": {
+      "value": [
+        {
+          "principalId": "{reader-principal-id}",
+          "principalType": "Group"
+        }
+      ]
+    },
+    "dataScientists": {
+      "value": [
+        {
+          "principalId": "{data-scientist-principal-id}",
+          "principalType": "Group"
+        }
+      ]
+    },
+    "mlOpsEngineers": {
+      "value": [
+        {
+          "principalId": "{mlops-engineer-principal-id}",
+          "principalType": "Group"
+        }
+      ]
+    },
+    "sharedPrivateLinkResources": {
+      "value": []
+    }
+  }
+}

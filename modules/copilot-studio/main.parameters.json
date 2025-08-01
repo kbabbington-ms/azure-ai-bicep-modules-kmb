@@ -1,0 +1,112 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "copilotStudioName": {
+      "value": "copilot-studio-${uniqueString(resourceGroup().id)}"
+    },
+    "location": {
+      "value": "eastus"
+    },
+    "powerPlatformRegion": {
+      "value": "unitedstates"
+    },
+    "environmentType": {
+      "value": "Sandbox"
+    },
+    "enableDataverse": {
+      "value": true
+    },
+    "languageCode": {
+      "value": "1033"
+    },
+    "currencyCode": {
+      "value": "USD"
+    },
+    "enableAzureBotService": {
+      "value": true
+    },
+    "botDisplayName": {
+      "value": "Enterprise Copilot Bot"
+    },
+    "botDescription": {
+      "value": "Enterprise Copilot Studio Bot for intelligent conversation automation"
+    },
+    "botServiceSku": {
+      "value": "S1"
+    },
+    "microsoftAppId": {
+      "value": ""
+    },
+    "enabledChannels": {
+      "value": {
+        "webchat": true,
+        "msteams": true,
+        "directline": true,
+        "email": false,
+        "facebook": false,
+        "slack": false,
+        "telegram": false,
+        "sms": false,
+        "kik": false,
+        "groupme": false,
+        "line": false,
+        "skype": false
+      }
+    },
+    "enableApplicationInsights": {
+      "value": true
+    },
+    "applicationInsightsId": {
+      "value": ""
+    },
+    "enableConversationHistory": {
+      "value": true
+    },
+    "enableCompliance": {
+      "value": true
+    },
+    "dataRetentionDays": {
+      "value": 90
+    },
+    "enableAuditLogs": {
+      "value": true
+    },
+    "logAnalyticsWorkspaceId": {
+      "value": ""
+    },
+    "enablePrivateEndpoint": {
+      "value": false
+    },
+    "subnetId": {
+      "value": ""
+    },
+    "enableCustomerManagedKey": {
+      "value": false
+    },
+    "keyVaultId": {
+      "value": ""
+    },
+    "keyName": {
+      "value": ""
+    },
+    "keyVersion": {
+      "value": ""
+    },
+    "tenantId": {
+      "value": "[tenant().tenantId]"
+    },
+    "tags": {
+      "value": {
+        "Environment": "Development",
+        "Project": "Azure AI Services",
+        "Service": "Copilot Studio",
+        "CostCenter": "IT",
+        "Owner": "AI Team",
+        "Compliance": "Enterprise",
+        "Backup": "Required",
+        "Monitoring": "Enabled"
+      }
+    }
+  }
+}

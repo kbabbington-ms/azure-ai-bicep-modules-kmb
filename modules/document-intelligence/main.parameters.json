@@ -1,0 +1,132 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "documentIntelligenceName": {
+      "value": "doc-intel-prod"
+    },
+    "location": {
+      "value": "eastus"
+    },
+    "documentIntelligenceSku": {
+      "value": "S0"
+    },
+    "enablePrebuiltModels": {
+      "value": true
+    },
+    "enabledPrebuiltModels": {
+      "value": {
+        "invoice": true,
+        "receipt": true,
+        "businessCard": true,
+        "identityDocument": true,
+        "w2": true,
+        "contract": true,
+        "layout": true,
+        "generalDocument": true
+      }
+    },
+    "enableCustomModels": {
+      "value": true
+    },
+    "maxCustomModels": {
+      "value": 25
+    },
+    "enableComposedModels": {
+      "value": true
+    },
+    "enablePrivateEndpoint": {
+      "value": false
+    },
+    "subnetId": {
+      "value": ""
+    },
+    "enableCustomerManagedKey": {
+      "value": false
+    },
+    "keyVaultId": {
+      "value": ""
+    },
+    "keyName": {
+      "value": ""
+    },
+    "keyVersion": {
+      "value": ""
+    },
+    "enableAuditLogging": {
+      "value": true
+    },
+    "dataRetentionDays": {
+      "value": 365
+    },
+    "enableApplicationInsights": {
+      "value": true
+    },
+    "applicationInsightsId": {
+      "value": ""
+    },
+    "logAnalyticsWorkspaceId": {
+      "value": ""
+    },
+    "enableAlerts": {
+      "value": true
+    },
+    "enableDedicatedStorage": {
+      "value": true
+    },
+    "storageAccountSku": {
+      "value": "Standard_LRS"
+    },
+    "enableStorageEncryption": {
+      "value": false
+    },
+    "storageContainers": {
+      "value": [
+        "input-documents",
+        "processed-documents",
+        "training-data",
+        "model-artifacts",
+        "audit-logs"
+      ]
+    },
+    "enableBatchProcessing": {
+      "value": true
+    },
+    "maxBatchSize": {
+      "value": 100
+    },
+    "enableApiKeyAuth": {
+      "value": true
+    },
+    "enableManagedIdentity": {
+      "value": true
+    },
+    "allowedIpAddresses": {
+      "value": []
+    },
+    "enableCors": {
+      "value": true
+    },
+    "tags": {
+      "value": {
+        "Environment": "Production",
+        "Project": "Azure AI Platform",
+        "Owner": "Data Science Team",
+        "Department": "IT",
+        "CostCenter": "CC-AI-001",
+        "BusinessUnit": "Enterprise AI",
+        "Application": "Document Processing",
+        "Compliance": "SOC2-HIPAA-GDPR",
+        "BackupPolicy": "Enterprise",
+        "MonitoringTier": "Critical",
+        "DataClassification": "Confidential",
+        "MaintenanceWindow": "Sunday-2AM-EST",
+        "SecurityContact": "security@company.com",
+        "BusinessContact": "ai-team@company.com"
+      }
+    },
+    "resourceSuffix": {
+      "value": ""
+    }
+  }
+}

@@ -1,0 +1,244 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "logicAppName": {
+      "value": "ai-workflows-prod"
+    },
+    "location": {
+      "value": "eastus"
+    },
+    "logicAppSku": {
+      "value": "WS1"
+    },
+    "appServicePlanConfig": {
+      "value": {
+        "name": "ai-workflows-asp",
+        "sku": "WS1",
+        "capacity": 2,
+        "maximumElasticWorkerCount": 20,
+        "targetWorkerCount": 2,
+        "targetWorkerSizeId": 0,
+        "workerTierName": null
+      }
+    },
+    "azureOpenAIConfig": {
+      "value": {
+        "enabled": true,
+        "endpoint": "https://myopenai.openai.azure.com/",
+        "apiVersion": "2024-02-01",
+        "deploymentName": "gpt-4o",
+        "maxTokens": 4000,
+        "temperature": "0.7",
+        "useSystemAssignedIdentity": true
+      }
+    },
+    "documentIntelligenceConfig": {
+      "value": {
+        "enabled": true,
+        "endpoint": "https://mydocintel.cognitiveservices.azure.com/",
+        "apiVersion": "2023-07-31",
+        "modelId": "prebuilt-invoice",
+        "useSystemAssignedIdentity": true
+      }
+    },
+    "cognitiveServicesConfig": {
+      "value": {
+        "enabled": true,
+        "endpoint": "https://mycognitive.cognitiveservices.azure.com/",
+        "services": [
+          "ComputerVision",
+          "TextAnalytics",
+          "Translator",
+          "SpeechServices"
+        ],
+        "useSystemAssignedIdentity": true
+      }
+    },
+    "aiSearchConfig": {
+      "value": {
+        "enabled": true,
+        "endpoint": "https://myaisearch.search.windows.net/",
+        "indexName": "ai-knowledge-base",
+        "apiVersion": "2023-11-01",
+        "useSystemAssignedIdentity": true
+      }
+    },
+    "enablePrebuiltWorkflows": {
+      "value": true
+    },
+    "enabledWorkflowTemplates": {
+      "value": {
+        "documentProcessing": true,
+        "intelligentRouting": true,
+        "contentModeration": true,
+        "dataExtraction": true,
+        "sentimentAnalysis": true,
+        "translationPipeline": true,
+        "voiceToText": true,
+        "imageAnalysis": true,
+        "knowledgeExtraction": true,
+        "chatbotOrchestration": true
+      }
+    },
+    "workflowTimeouts": {
+      "value": {
+        "shortRunning": "PT5M",
+        "mediumRunning": "PT30M",
+        "longRunning": "PT2H",
+        "batchProcessing": "PT6H"
+      }
+    },
+    "retryPolicyConfig": {
+      "value": {
+        "count": 3,
+        "interval": "PT1M",
+        "type": "exponential",
+        "minimumInterval": "PT30S",
+        "maximumInterval": "PT10M"
+      }
+    },
+    "enablePrivateEndpoint": {
+      "value": false
+    },
+    "subnetId": {
+      "value": ""
+    },
+    "enableVNetIntegration": {
+      "value": false
+    },
+    "vnetIntegrationSubnetId": {
+      "value": ""
+    },
+    "enableCustomerManagedKey": {
+      "value": false
+    },
+    "keyVaultId": {
+      "value": ""
+    },
+    "keyName": {
+      "value": ""
+    },
+    "keyVersion": {
+      "value": ""
+    },
+    "enableAuditLogging": {
+      "value": true
+    },
+    "dataRetentionDays": {
+      "value": 365
+    },
+    "enableApplicationInsights": {
+      "value": true
+    },
+    "applicationInsightsId": {
+      "value": ""
+    },
+    "logAnalyticsWorkspaceId": {
+      "value": ""
+    },
+    "enableAlerts": {
+      "value": true
+    },
+    "enableWorkflowAnalytics": {
+      "value": true
+    },
+    "enableDedicatedStorage": {
+      "value": true
+    },
+    "storageAccountSku": {
+      "value": "Standard_LRS"
+    },
+    "enableStorageEncryption": {
+      "value": false
+    },
+    "storageContainers": {
+      "value": [
+        "workflow-state",
+        "workflow-artifacts",
+        "input-data",
+        "output-data",
+        "audit-logs",
+        "analytics-data"
+      ]
+    },
+    "enableEventGrid": {
+      "value": true
+    },
+    "eventGridTopics": {
+      "value": [
+        "ai-workflow-events",
+        "document-processing-events",
+        "content-moderation-events"
+      ]
+    },
+    "enableServiceBus": {
+      "value": true
+    },
+    "serviceBusConfig": {
+      "value": {
+        "name": "ai-workflows-sb",
+        "sku": "Standard",
+        "queues": [
+          "ai-processing-queue",
+          "document-queue",
+          "error-queue",
+          "dead-letter-queue"
+        ],
+        "topics": [
+          "workflow-events",
+          "ai-results"
+        ]
+      }
+    },
+    "enableAutoScaling": {
+      "value": true
+    },
+    "autoScalingConfig": {
+      "value": {
+        "minWorkerCount": 1,
+        "maxWorkerCount": 10,
+        "targetCpuPercentage": 70,
+        "targetMemoryPercentage": 80,
+        "scaleOutCooldown": "PT5M",
+        "scaleInCooldown": "PT10M"
+      }
+    },
+    "enableWorkflowCaching": {
+      "value": true
+    },
+    "cachingConfig": {
+      "value": {
+        "redisCacheEnabled": false,
+        "redisCacheId": "",
+        "inMemoryCacheSize": "100MB",
+        "cacheTtl": "PT1H"
+      }
+    },
+    "tags": {
+      "value": {
+        "Environment": "Production",
+        "Project": "Azure AI Platform",
+        "Owner": "AI Operations Team",
+        "Department": "IT",
+        "CostCenter": "CC-AI-001",
+        "BusinessUnit": "Enterprise AI",
+        "Application": "AI Workflows",
+        "Compliance": "SOC2-HIPAA-GDPR",
+        "BackupPolicy": "Enterprise",
+        "MonitoringTier": "Critical",
+        "DataClassification": "Confidential",
+        "MaintenanceWindow": "Sunday-2AM-EST",
+        "SecurityContact": "security@company.com",
+        "BusinessContact": "ai-team@company.com",
+        "TechnicalContact": "devops@company.com"
+      }
+    },
+    "resourceSuffix": {
+      "value": ""
+    },
+    "environment": {
+      "value": "prod"
+    }
+  }
+}

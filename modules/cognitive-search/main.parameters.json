@@ -1,0 +1,151 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "searchServiceName": {
+      "value": "srch-demo-service"
+    },
+    "location": {
+      "value": "East US 2"
+    },
+    "environment": {
+      "value": "dev"
+    },
+    "tags": {
+      "value": {
+        "Project": "AI-Platform",
+        "CostCenter": "IT-AI",
+        "Owner": "AI-Team"
+      }
+    },
+    "skuName": {
+      "value": "standard"
+    },
+    "replicaCount": {
+      "value": 1
+    },
+    "partitionCount": {
+      "value": 1
+    },
+    "hostingMode": {
+      "value": "default"
+    },
+    "semanticSearch": {
+      "value": "free"
+    },
+    "disableLocalAuth": {
+      "value": false
+    },
+    "publicNetworkAccess": {
+      "value": "disabled"
+    },
+    "aadAuthFailureMode": {
+      "value": "http401WithBearerChallenge"
+    },
+    "enableAadOrApiKeyAuth": {
+      "value": true
+    },
+    "managedIdentityType": {
+      "value": "SystemAssigned"
+    },
+    "enableCustomerManagedEncryption": {
+      "value": true
+    },
+    "encryptionEnforcement": {
+      "value": "Enabled"
+    },
+    "ipRules": {
+      "value": []
+    },
+    "enablePrivateEndpoints": {
+      "value": true
+    },
+    "vnetId": {
+      "value": "/subscriptions/{subscription-id}/resourceGroups/{rg-name}/providers/Microsoft.Network/virtualNetworks/{vnet-name}"
+    },
+    "privateEndpointSubnetId": {
+      "value": "/subscriptions/{subscription-id}/resourceGroups/{rg-name}/providers/Microsoft.Network/virtualNetworks/{vnet-name}/subnets/{pe-subnet-name}"
+    },
+    "privateDnsZoneId": {
+      "value": "/subscriptions/{subscription-id}/resourceGroups/{rg-name}/providers/Microsoft.Network/privateDnsZones/privatelink.search.windows.net"
+    },
+    "privateEndpointNameSuffix": {
+      "value": ""
+    },
+    "sharedPrivateLinkResources": {
+      "value": []
+    },
+    "enableDiagnostics": {
+      "value": true
+    },
+    "logAnalyticsWorkspaceId": {
+      "value": "/subscriptions/{subscription-id}/resourceGroups/{rg-name}/providers/Microsoft.OperationalInsights/workspaces/{law-name}"
+    },
+    "diagnosticsStorageAccountId": {
+      "value": "/subscriptions/{subscription-id}/resourceGroups/{rg-name}/providers/Microsoft.Storage/storageAccounts/{diag-storage-name}"
+    },
+    "eventHubAuthorizationRuleId": {
+      "value": ""
+    },
+    "eventHubName": {
+      "value": ""
+    },
+    "diagnosticLogsCategories": {
+      "value": [
+        "SearchOperations",
+        "SearchSlowLogs"
+      ]
+    },
+    "diagnosticMetricsCategories": {
+      "value": [
+        "AllMetrics"
+      ]
+    },
+    "diagnosticLogsRetentionInDays": {
+      "value": 90
+    },
+    "enableRbacAssignments": {
+      "value": true
+    },
+    "searchServiceAdministrators": {
+      "value": [
+        {
+          "principalId": "{admin-principal-id}",
+          "principalType": "User"
+        }
+      ]
+    },
+    "searchServiceContributors": {
+      "value": [
+        {
+          "principalId": "{contributor-principal-id}",
+          "principalType": "Group"
+        }
+      ]
+    },
+    "searchServiceReaders": {
+      "value": [
+        {
+          "principalId": "{reader-principal-id}",
+          "principalType": "Group"
+        }
+      ]
+    },
+    "searchIndexDataContributors": {
+      "value": [
+        {
+          "principalId": "{index-contributor-principal-id}",
+          "principalType": "Group"
+        }
+      ]
+    },
+    "searchIndexDataReaders": {
+      "value": [
+        {
+          "principalId": "{index-reader-principal-id}",
+          "principalType": "Group"
+        }
+      ]
+    }
+  }
+}
