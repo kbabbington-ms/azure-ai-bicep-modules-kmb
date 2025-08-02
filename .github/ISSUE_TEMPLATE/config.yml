@@ -1,11 +1,11 @@
 blank_issues_enabled: false
 contact_links:
-  - name: 💬 Discussions
-    url: https://github.com/kbabbington-ms/azure-ai-bicep-modules/discussions
-    about: Ask questions and discuss ideas with the community
-  - name: 📖 Azure Documentation
-    url: https://docs.microsoft.com/azure/
-    about: Official Azure documentation
-  - name: 🔧 Azure Support
-    url: https://azure.microsoft.com/support/
-    about: Official Azure support
+  - name: "💬 Discussions"
+    url: "https://github.com/kbabbington-ms/azure-ai-bicep-modules/discussions"
+    about: "Ask questions and discuss ideas with the community"
+  - name: "📖 Azure Documentation"
+    url: "https://docs.microsoft.com/azure/"
+    about: "Official Azure documentation"
+  - name: "🔧 Azure Support"
+    url: "https://azure.microsoft.com/support/"
+    about: "Official Azure support"
