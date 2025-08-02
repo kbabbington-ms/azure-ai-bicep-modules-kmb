@@ -1,0 +1,114 @@
+name: 🐛 Bug Report
+description: Report a bug or issue with the Bicep modules
+title: "[BUG] "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out the form below to help us investigate.
+
+  - type: input
+    id: module
+    attributes:
+      label: Module Name
+      description: Which module is affected?
+      placeholder: e.g., azure-openai, cognitive-services, ai-foundry
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is.
+      placeholder: Describe what happened vs what you expected
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Deploy module with parameters...
+        2. Configure settings...
+        3. See error...
+    validations:
+      required: true
+
+  - type: textarea
+    id: parameters
+    attributes:
+      label: Parameters Used
+      description: Share the parameters you used (remove any sensitive information)
+      render: json
+      placeholder: |
+        {
+          "parameter1": "value1",
+          "parameter2": "value2"
+        }
+
+  - type: textarea
+    id: error
+    attributes:
+      label: Error Output
+      description: Copy and paste any error messages
+      render: shell
+      placeholder: Paste error output here
+
+  - type: dropdown
+    id: azure-cli
+    attributes:
+      label: Azure CLI Version
+      description: What version of Azure CLI are you using?
+      options:
+        - Latest (2.60+)
+        - 2.50-2.59
+        - 2.40-2.49
+        - Older version
+        - Unknown
+    validations:
+      required: true
+
+  - type: dropdown
+    id: bicep-version
+    attributes:
+      label: Bicep Version
+      description: What version of Bicep are you using?
+      options:
+        - Latest (0.28+)
+        - 0.25-0.27
+        - 0.20-0.24
+        - Older version
+        - Unknown
+    validations:
+      required: true
+
+  - type: input
+    id: azure-region
+    attributes:
+      label: Azure Region
+      description: Which Azure region are you deploying to?
+      placeholder: e.g., eastus, westeurope, southeastasia
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here
+      placeholder: Any additional information that might be helpful
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues to make sure this is not a duplicate
+          required: true
+        - label: I have removed any sensitive information from my report
+          required: true
+        - label: I am using the latest version of the module
+          required: true

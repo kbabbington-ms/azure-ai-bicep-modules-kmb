@@ -1,0 +1,103 @@
+name: 🚀 Feature Request
+description: Suggest a new feature or enhancement
+title: "[FEATURE] "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a new feature! Please fill out the form below.
+
+  - type: dropdown
+    id: feature-type
+    attributes:
+      label: Feature Type
+      description: What type of feature are you requesting?
+      options:
+        - New Azure service module
+        - Enhancement to existing module
+        - New deployment option
+        - Security improvement
+        - Documentation improvement
+        - Tooling/automation improvement
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: module
+    attributes:
+      label: Module Name
+      description: Which module would this affect? (or "New Module" if requesting a new one)
+      placeholder: e.g., azure-openai, cognitive-services, or "New Module"
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve?
+      placeholder: Describe the problem or use case this feature would address
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe your proposed solution
+      placeholder: How would you like to see this implemented?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: What alternatives have you considered?
+      placeholder: Describe any alternative solutions or features you've considered
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Usage Examples
+      description: Provide examples of how this feature would be used
+      placeholder: |
+        Example parameter configuration:
+        ```json
+        {
+          "newFeature": "value"
+        }
+        ```
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this feature to you?
+      options:
+        - Low - Nice to have
+        - Medium - Would significantly help
+        - High - Blocking important use case
+        - Critical - Cannot proceed without this
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Add any other context, screenshots, or examples
+      placeholder: Any additional information that would be helpful
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues to make sure this is not a duplicate
+          required: true
+        - label: This feature request is related to Azure AI services or infrastructure
+          required: true
+        - label: I have considered security implications of this feature
+          required: true

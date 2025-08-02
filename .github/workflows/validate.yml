@@ -1,0 +1,143 @@
+name: Validate Bicep Templates
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  validate:
+    name: Validate Bicep Templates
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Azure CLI
+      uses: azure/CLI@v1
+      with:
+        azcliversion: latest
+        
+    - name: Install Bicep
+      run: az bicep install
+      
+    - name: Find and validate Bicep templates
+      run: |
+        echo "🔍 Finding Bicep templates..."
+        bicep_files=$(find . -name "*.bicep" -not -path "./.git/*" | head -20)
+        
+        if [ -z "$bicep_files" ]; then
+          echo "❌ No Bicep templates found"
+          exit 1
+        fi
+        
+        echo "📋 Found Bicep templates:"
+        echo "$bicep_files"
+        echo ""
+        
+        echo "🧪 Validating templates..."
+        failed=0
+        
+        for file in $bicep_files; do
+          echo "Validating: $file"
+          if az bicep build --file "$file" --stdout > /dev/null 2>&1; then
+            echo "✅ $file - Valid"
+          else
+            echo "❌ $file - Invalid"
+            echo "Error details:"
+            az bicep build --file "$file" 2>&1 || true
+            failed=1
+          fi
+          echo ""
+        done
+        
+        if [ $failed -eq 1 ]; then
+          echo "❌ Some templates failed validation"
+          exit 1
+        else
+          echo "🎉 All templates validated successfully!"
+        fi
+        
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Run security scan
+      run: |
+        echo "🔍 Scanning for security issues..."
+        
+        # Check for hardcoded secrets patterns
+        echo "Checking for potential secrets..."
+        if grep -r -E "(password|secret|key|token).*=.*['\"][^'\"]{8,}['\"]" . --include="*.bicep" --include="*.json" --exclude-dir=.git; then
+          echo "⚠️  Potential hardcoded secrets found!"
+          echo "Please review the above matches and ensure no secrets are committed."
+        else
+          echo "✅ No obvious hardcoded secrets detected"
+        fi
+        
+        # Check for public access settings
+        echo ""
+        echo "Checking for public access configurations..."
+        if grep -r -E "(publicNetworkAccess|allowBlobPublicAccess).*['\"]?[Ee]nabled?['\"]?" . --include="*.bicep" --include="*.json" --exclude-dir=.git; then
+          echo "⚠️  Public access settings found - please verify these are intentional"
+        else
+          echo "✅ No concerning public access settings found"
+        fi
+        
+        echo ""
+        echo "🔒 Security scan completed"
+
+  documentation:
+    name: Documentation Check
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Check documentation
+      run: |
+        echo "📚 Checking documentation..."
+        
+        # Check for README files
+        readme_count=$(find . -name "README.md" | wc -l)
+        echo "Found $readme_count README.md files"
+        
+        # Check each module has documentation
+        module_dirs=$(find modules -maxdepth 1 -type d 2>/dev/null | tail -n +2 || echo "")
+        
+        if [ -n "$module_dirs" ]; then
+          echo ""
+          echo "Checking module documentation..."
+          missing_docs=0
+          
+          for dir in $module_dirs; do
+            if [ -f "$dir/README.md" ]; then
+              echo "✅ $dir has README.md"
+            else
+              echo "❌ $dir missing README.md"
+              missing_docs=1
+            fi
+            
+            if [ -f "$dir/main.bicep" ] && [ -f "$dir/main.parameters.json" ]; then
+              echo "✅ $dir has required files"
+            else
+              echo "⚠️  $dir missing required files (main.bicep or main.parameters.json)"
+            fi
+          done
+          
+          if [ $missing_docs -eq 1 ]; then
+            echo ""
+            echo "❌ Some modules are missing documentation"
+            exit 1
+          fi
+        fi
+        
+        echo ""
+        echo "📖 Documentation check completed successfully!"
