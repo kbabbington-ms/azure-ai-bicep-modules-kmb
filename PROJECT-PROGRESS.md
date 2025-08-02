@@ -2,11 +2,14 @@
 
 ## 🎯 Project Overview
 
-**Goal**: Create comprehensive, enterprise-grade Bicep modules for Azure AI services with security-first design, complete documentation, and deployment automation.
+**Goal**: Create comprehensive, enterprise-grade Bicep modules for Azure AI services with security-first design, complete documentation, deployment automation, and policy-as-code for all AI resources.
+
+**Policy Work**: We are actively developing and including Azure Policy definitions and initiatives for all AI resources. These policies enforce security, compliance, and operational best practices across Cognitive Services, OpenAI, Machine Learning, Key Vault, Storage, Networking, and more. All policy modules and initiatives are documented and grouped for easy assignment.
 
 **Status**: 🎉 **ENHANCED** - All 6 core modules now have comprehensive documentation, plus Phase 1 strategic expansion completed with 3 new modules
 
 ---
+
 
 ## 📊 Overall Progress
 
@@ -14,8 +17,9 @@
 ████████████████████████████████████████████████████████████████████████ 95%
 ```
 
-**Completed**: 98% of foundational work + strategic expansion Phase 1 completed with 3 modules  
-**Last Updated**: December 20, 2024
+**Completed**: 98% of foundational work + strategic expansion Phase 1 completed with 3 modules
+**Policy-as-Code**: SFI policy definitions and initiatives for all AI resources are now included and expanding
+**Last Updated**: August 1, 2025
 
 ---
 
@@ -407,14 +411,17 @@ Successfully completed **Phase 1 strategic expansion** with three critical AI se
 - **� Document Automation**: 90% document processing automation ready ✅
 - **�📊 Platform Expansion**: 6 → 9 modules (50% growth) ✅
 
+
 ### **🔄 Next Phase Priorities**
 1. **AI Workflows Module** - Logic Apps orchestration for AI pipelines
 2. **Video Indexer Module** - Content analysis capabilities
 3. **Content Safety Module** - Enterprise content moderation
+4. **Policy-as-Code Expansion** - Continue adding and refining policy definitions and initiatives for all AI resources, with full documentation and deployment guides
 
 ---
 
-**Last Updated**: August 1, 2025  
-**Phase 1 Status**: ✅ **COMPLETE** (3/3 modules)  
-**Next Phase**: AI Workflows development  
+**Last Updated**: August 1, 2025
+**Phase 1 Status**: ✅ **COMPLETE** (3/3 modules)
+**Policy-as-Code Status**: 🚀 **IN PROGRESS** (SFI policy definitions and initiatives for all AI resources are being developed and expanded)
+**Next Phase**: AI Workflows development & Policy-as-Code expansion
 **Project Owner**: AI Infrastructure Team

@@ -1,8 +1,16 @@
 # Azure AI Services - Comprehensive Bicep Modules
 
+
 ## 🚀 Overview
 
-This repository contains a comprehensive collection of Bicep modules for deploying secure Azure AI services and supporting infrastructure. Each module follows Microsoft and security best practices, includes all configuration options with detailed descriptions, and implements security hardening by default.
+This repository contains a comprehensive collection of Bicep modules for deploying secure Azure AI services and supporting infrastructure. In addition to service modules, we are actively developing and including Azure Policy definitions and initiatives for all AI resources. These policies help enforce security, compliance, and operational best practices across your environment.
+
+### Policy-as-Code for AI Services
+- **SFI Compliance**: Policy definitions and initiatives for Secure Foundational Infrastructure (SFI) requirements
+- **AI Resource Coverage**: Policies for Cognitive Services, OpenAI, Machine Learning, Key Vault, Storage, Networking, and more
+- **Initiative Grouping**: All policies are grouped in initiatives for easy assignment and management
+- **Continuous Expansion**: We are expanding coverage to include all AI-related Azure resources as the project evolves
+
 
 ## 🏗️ Architecture Approach
 
@@ -19,103 +27,17 @@ This repository contains a comprehensive collection of Bicep modules for deployi
 - **Testing Included** - Validation scripts and test scenarios
 - **Documentation Rich** - Every parameter documented with security implications
 
+
 ## 📁 Repository Structure
 
 ```
 azure-ai-bicep-modules/
+├── bicep/policy/foundry/           # SFI policy definitions & initiatives for AI resources
+│   ├── SFI-W1-Def-Foundry-*.bicep  # Individual policy definitions (tagging, encryption, network, etc.)
+│   ├── SFI-W1-Ini-Foundry.bicep    # Initiative grouping all policies for AI Foundry
+│   ├── DEPLOYMENT_INSTRUCTIONS.md  # Step-by-step deployment guide
+│   └── README.md                   # Policy documentation
 ├── modules/
-│   ├── storage/                     # ✅ COMPLETED
-│   │   ├── storage-account.bicep    # Main storage account module
-│   │   ├── storage-account.parameters.json
-│   │   ├── test-storage-account.bicep
-│   │   ├── deploy.sh               # Linux/macOS deployment script
-│   │   ├── deploy.ps1              # Windows PowerShell script
-│   │   └── README.md               # Comprehensive documentation
-│   │
-│   ├── cognitive-services/         # ✅ COMPLETED
-│   │   ├── cognitive-services.bicep # Main Cognitive Services module
-│   │   ├── cognitive-services.parameters.json
-│   │   ├── test-scenarios.md       # Comprehensive test scenarios
-│   │   ├── deploy.sh               # Linux/macOS deployment script
-│   │   ├── deploy.ps1              # Windows PowerShell script
-│   │   └── README.md               # Comprehensive documentation
-│   │
-│   ├── azure-openai/               # 🆕 NEW - COMPLETED
-│   │   ├── main.bicep              # Dedicated Azure OpenAI module
-│   │   ├── main.parameters.json    # Enterprise configuration examples
-│   │   ├── deploy.sh               # Linux/macOS deployment script
-│   │   ├── deploy.ps1              # Windows PowerShell script
-│   │   └── README.md               # Comprehensive documentation
-│   │
-│   ├── copilot-studio/             # ✅ COMPLETED
-│   │   ├── main.bicep              # Copilot Studio + Power Platform
-│   │   ├── main.parameters.json    # Enterprise configuration
-│   │   ├── deploy.sh               # Bash deployment script
-│   │   ├── deploy.ps1              # PowerShell deployment script
-│   │   └── README.md               # Complete setup guide
-│   │
-│   ├── document-intelligence/      # ✅ COMPLETED
-│   │   ├── main.bicep              # Document Intelligence service
-│   │   ├── custom-models.bicep     # Training and deployment
-│   │   └── README.md               # Advanced document processing
-│   │
-│   ├── ai-workflows/               # ✅ COMPLETED
-│   │   ├── logic-apps.bicep        # AI workflow orchestration
-│   │   ├── ai-connectors.bicep     # Pre-built AI integrations
-│   │   └── README.md               # Workflow patterns
-│   │
-│   ├── machine-learning/           # 🔄 PLANNED
-│   │   ├── ml-workspace.bicep
-│   │   ├── ml-compute-instance.bicep
-│   │   ├── ml-compute-cluster.bicep
-│   │   ├── ml-datastore.bicep
-│   │   └── README.md
-│   │
-│   ├── search/                     # 🔄 PLANNED
-│   │   ├── search-service.bicep
-│   │   ├── search-private-endpoint.bicep
-│   │   └── README.md
-│   │
-│   ├── key-vault/                  # 🔄 PLANNED
-│   │   ├── key-vault.bicep
-│   │   ├── key-vault-access-policy.bicep
-│   │   └── README.md
-│   │
-│   ├── networking/                 # 🔄 PLANNED
-│   │   ├── virtual-network.bicep
-│   │   ├── private-endpoint.bicep
-│   │   ├── network-security-group.bicep
-│   │   └── README.md
-│   │
-│   ├── monitoring/                 # 🔄 PLANNED
-│   │   ├── log-analytics.bicep
-│   │   ├── application-insights.bicep
-│   │   ├── diagnostic-settings.bicep
-│   │   └── README.md
-│   │
-│   └── identity/                   # 🔄 PLANNED
-│       ├── managed-identity.bicep
-│       ├── rbac-assignments.bicep
-│       └── README.md
-│
-├── examples/                       # 🔄 PLANNED
-│   ├── ai-platform-complete/      # End-to-end AI platform
-│   ├── secure-ai-workload/        # Security-focused deployment
-│   ├── multi-region-ai/           # Multi-region setup
-│   └── landing-zone/              # AI landing zone
-│
-├── scripts/                       # 🔄 PLANNED
-│   ├── deploy-all.sh
-│   ├── deploy-all.ps1
-│   ├── validate-all.sh
-│   └── cleanup.sh
-│
-└── docs/                          # 🔄 PLANNED
-    ├── security-guidelines.md
-    ├── compliance-mapping.md
-    ├── troubleshooting.md
-    └── best-practices.md
-```
 
 ## ✅ Completed Modules
 
@@ -449,11 +371,20 @@ Each module includes:
 - [ ] Multi-region template
 - [ ] Disaster recovery template
 
+
 ### Phase 4: Advanced Features 🚀
 - [ ] GitOps integration
-- [ ] Policy-as-Code
+- [x] Policy-as-Code: SFI policy definitions and initiatives for all AI resources
 - [ ] Automated testing
 - [ ] Compliance automation
+
+## 📊 Project Progress
+
+- **Policy-as-Code**: Actively developing and expanding policy definitions and initiatives for all Azure AI resources
+- **Coverage**: Cognitive Services, OpenAI, Machine Learning, Key Vault, Storage, Networking, Monitoring, Identity, and more
+- **Documentation**: All policy modules and initiatives are documented in `bicep/policy/foundry/README.md` and deployment steps in `DEPLOYMENT_INSTRUCTIONS.md`
+- **Goal**: Achieve full SFI compliance and best practices for every AI workload deployed with these modules
+
 
 ## 📞 Support
 
@@ -479,4 +410,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**⚠️ Security Notice**: These modules implement security best practices by default. Always review configurations before production deployment and ensure they meet your organization's specific security requirements.
+
+**⚠️ Security Notice**: These modules and policy definitions implement security best practices by default. Always review configurations and policy assignments before production deployment and ensure they meet your organization's specific security and compliance requirements.
