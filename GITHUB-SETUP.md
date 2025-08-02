@@ -17,11 +17,11 @@
 
 ### 2. Connect Local Repository to GitHub
 
-After creating the repository, GitHub will show you commands. Use these (replace YOUR-USERNAME):
+After creating the repository, GitHub will show you commands. Use these:
 
 ```bash
 # Add GitHub as remote origin
-git remote add origin https://github.com/YOUR-USERNAME/azure-ai-bicep-modules.git
+git remote add origin https://github.com/kbabbington-ms/azure-ai-bicep-modules.git
 
 # Rename branch to main (if needed)
 git branch -M main
@@ -45,9 +45,9 @@ After pushing, you'll need to update placeholder URLs in the documentation:
 find . -name "*.md" -exec grep -l "your-org\|your-repo\|YOUR-USERNAME" {} \;
 
 # Replace with your actual GitHub username
-# Replace: your-org → YOUR-ACTUAL-USERNAME
-# Replace: your-repo → YOUR-ACTUAL-USERNAME  
-# Replace: YOUR-USERNAME → YOUR-ACTUAL-USERNAME
+# Replace: your-org → kbabbington-ms
+# Replace: your-repo → kbabbington-ms  
+# Replace: YOUR-USERNAME → kbabbington-ms
 ```
 
 ### 4. Commit URL Updates
