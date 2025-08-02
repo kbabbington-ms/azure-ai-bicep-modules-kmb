@@ -1,3 +1,4 @@
+targetScope = 'subscription'
 // SFI-W1 Advanced Monitoring Policy Definition
 // NOTE: Deploy this policy definition at the subscription, management group, or tenant scope.
 param policyName string = 'Enforce Advanced Monitoring'

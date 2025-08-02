@@ -101,3 +101,4 @@ deploymentTemplate.json
 !package.json
 !**/package.json
 !**/package-lock.json
+.github/ISSUE_TEMPLATE/config.yml
