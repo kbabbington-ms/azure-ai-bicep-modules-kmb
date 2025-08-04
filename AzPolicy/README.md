@@ -1,0 +1,181 @@
+# Azure Policy Framework - Organized Structure
+
+## Overview
+
+This directory contains a comprehensive **Azure Policy-as-Code** framework organized by resource types for better maintainability, discoverability, and governance. The structure follows enterprise best practices for policy organization and deployment automation.
+
+## Directory Structure
+
+```
+AzPolicy/
+├── definitions/        # Individual policy definitions
+│   ├── ai-foundry/    # Azure AI Foundry policies
+│   ├── cognitive-services/ # Cognitive Services policies
+│   ├── content-safety/ # Content Safety policies
+│   ├── general/       # Cross-service general policies
+│   ├── key-vault/     # Key Vault policies
+│   ├── logic-apps/    # Logic Apps policies
+│   └── video-indexer/ # Video Indexer policies
+├── initiatives/       # Policy initiative bundles
+│   ├── ai-foundry/    # AI Foundry initiative groupings
+│   ├── cognitive-services/ # Cognitive Services initiatives
+│   ├── content-safety/ # Content Safety initiatives
+│   ├── general/       # General compliance initiatives
+│   ├── key-vault/     # Key Vault initiatives
+│   ├── logic-apps/    # Logic Apps initiatives
+│   └── video-indexer/ # Video Indexer initiatives
+├── docs/              # Documentation and guides
+│   ├── ai-foundry/    # AI Foundry policy documentation
+│   ├── cognitive-services/ # Cognitive Services docs
+│   ├── content-safety/ # Content Safety documentation
+│   ├── general/       # General policy documentation
+│   ├── key-vault/     # Key Vault policy docs
+│   ├── logic-apps/    # Logic Apps documentation
+│   └── video-indexer/ # Video Indexer documentation
+└── scripts/           # Deployment and automation scripts
+    ├── ai-foundry/    # AI Foundry deployment scripts
+    ├── cognitive-services/ # Cognitive Services scripts
+    ├── content-safety/ # Content Safety scripts
+    ├── general/       # General deployment scripts
+    ├── key-vault/     # Key Vault scripts
+    ├── logic-apps/    # Logic Apps scripts
+    └── video-indexer/ # Video Indexer scripts
+```
+
+## Resource Categories
+
+### **AI Foundry** (`ai-foundry/`)
+- Core Azure AI platform policies
+- Model governance and version control
+- Data residency and sovereignty
+- AI-specific security controls
+
+### **Cognitive Services** (`cognitive-services/`)
+- SKU and pricing tier controls
+- Service-specific configurations
+- API access management
+- Integration policies
+
+### **Content Safety** (`content-safety/`)
+- Content moderation policies
+- Safety threshold enforcement
+- Compliance and reporting
+- Content filtering controls
+
+### **Key Vault** (`key-vault/`)
+- Secret management policies
+- Access control requirements
+- Private endpoint enforcement
+- Encryption key governance
+
+### **Logic Apps** (`logic-apps/`)
+- AI workflow security policies
+- Integration governance
+- Data flow controls
+- Connector restrictions
+
+### **Video Indexer** (`video-indexer/`)
+- Video analysis governance
+- Privacy and compliance
+- Content processing rules
+- Storage and retention policies
+
+### **General** (`general/`)
+- Cross-service policies
+- Tagging requirements
+- Network access controls
+- Diagnostic logging standards
+- Managed identity enforcement
+
+## Policy Naming Convention
+
+### **Policy Definitions**
+- Format: `SFI-W1-Def-[ResourceType]-[PolicyName].bicep`
+- Example: `SFI-W1-Def-Foundry-RequireCreatedByTag.bicep`
+
+### **Policy Initiatives**
+- Format: `SFI-W1-Ini-[ResourceType].bicep`
+- Example: `SFI-W1-Ini-Foundry.bicep`
+
+### **Documentation**
+- Format: `README-[Component].md`
+- Example: `README-ContentSafety.md`
+
+## Deployment Strategy
+
+### **Resource-Specific Deployment**
+Each resource category can be deployed independently:
+
+```bash
+# Deploy AI Foundry policies only
+./scripts/ai-foundry/deploy.sh
+
+# Deploy Cognitive Services policies only
+./scripts/cognitive-services/deploy.sh
+```
+
+### **Full Framework Deployment**
+Deploy all policies across all resource types:
+
+```bash
+# Deploy everything (Bash)
+./scripts/general/deploy-all.sh
+
+# Deploy everything (PowerShell)
+./scripts/general/Deploy-All.ps1
+```
+
+## Migration from Legacy Structure
+
+This organized structure replaces the previous flat directory structure in `bicep/policy/foundry/`. Key improvements:
+
+### **Before (Legacy)**
+```
+bicep/policy/foundry/
+├── SFI-W1-Def-Foundry-*.bicep (all mixed together)
+├── policy-definition-sfi-*.bicep (old naming)
+├── SFI-W1-*.bicep (inconsistent naming)
+└── README-*.md (mixed documentation)
+```
+
+### **After (Organized)**
+```
+AzPolicy/
+├── definitions/[resource-type]/
+├── initiatives/[resource-type]/
+├── docs/[resource-type]/
+└── scripts/[resource-type]/
+```
+
+## Benefits of New Structure
+
+1. **🎯 Resource-Focused Organization**: Easy to find policies for specific Azure services
+2. **📦 Modular Deployment**: Deploy only the policies you need
+3. **📚 Clear Documentation**: Service-specific documentation and guides
+4. **🚀 Automated Deployment**: Resource-specific deployment scripts
+5. **🔄 Easier Maintenance**: Logical grouping reduces complexity
+6. **👥 Team Collaboration**: Teams can own specific resource areas
+
+## Next Steps
+
+1. **Migrate Existing Files**: Move current policies from `bicep/policy/foundry/` to appropriate resource folders
+2. **Update References**: Update any hard-coded paths in deployment scripts
+3. **Create Resource READMEs**: Add specific documentation for each resource type
+4. **Test Deployments**: Validate that all policies deploy correctly in new structure
+
+## Compliance Framework
+
+This structure supports **SFI-W1 (Secure Foundational Infrastructure - Workload 1)** compliance with:
+
+- ✅ **Network Security**: Private endpoint requirements, public access restrictions
+- ✅ **Identity & Access**: Managed identity enforcement, RBAC controls
+- ✅ **Data Protection**: Encryption at rest and in transit, Key Vault integration
+- ✅ **Monitoring & Logging**: Diagnostic logging, audit trail requirements
+- ✅ **Governance**: Resource tagging, naming conventions, SKU restrictions
+- ✅ **Compliance**: Data residency, retention policies, version control
+
+---
+
+**Status**: 🏗️ **Structure Created** - Ready for file migration and organization
+**Last Updated**: August 2, 2025
+**Version**: 1.0.0
