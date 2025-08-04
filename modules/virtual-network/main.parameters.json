@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "East US 2"
+    },
+    "environment": {
+      "value": "dev"
+    },
+    "projectName": {
+      "value": "secure-ai-enclave"
+    },
+    "enableDdosProtection": {
+      "value": true
+    },
+    "enableBastion": {
+      "value": true
+    },
+    "hubAddressPrefix": {
+      "value": "10.0.0.0/16"
+    },
+    "aiServicesAddressPrefix": {
+      "value": "10.1.0.0/16"
+    },
+    "computeAddressPrefix": {
+      "value": "10.2.0.0/16"
+    },
+    "dataServicesAddressPrefix": {
+      "value": "10.3.0.0/16"
+    }
+  }
+}

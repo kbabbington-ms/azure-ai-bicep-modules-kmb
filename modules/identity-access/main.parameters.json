@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "eastus"
+    },
+    "environment": {
+      "value": "dev"
+    },
+    "projectName": {
+      "value": "ai-enclave"
+    },
+    "logAnalyticsWorkspaceId": {
+      "value": "/subscriptions/{subscription-id}/resourceGroups/{rg-name}/providers/Microsoft.OperationalInsights/workspaces/{workspace-name}"
+    },
+    "adminGroupObjectId": {
+      "value": "{admin-group-object-id}"
+    },
+    "developerGroupObjectId": {
+      "value": "{developer-group-object-id}"
+    },
+    "auditorsGroupObjectId": {
+      "value": "{auditor-group-object-id}"
+    }
+  }
+}
