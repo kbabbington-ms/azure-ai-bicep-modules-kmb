@@ -56,12 +56,23 @@ resource applicationInsights 'Microsoft.Insights/components@2020-02-02' = if (en
   }
 }
 
-// Microsoft Sentinel
-resource sentinel 'Microsoft.SecurityInsights/workspaceSettings@2022-09-01-preview' = if (enableSentinel) {
-  scope: logAnalyticsWorkspace
-  name: 'default'
+// Microsoft Sentinel - Enable Sentinel on the Log Analytics Workspace
+resource sentinel 'Microsoft.OperationsManagement/solutions@2015-11-01-preview' = if (enableSentinel) {
+  name: 'SecurityInsights(${logAnalyticsWorkspace.name})'
+  location: location
+  tags: {
+    Environment: environment
+    Project: projectName
+    Purpose: 'Microsoft Sentinel SIEM solution'
+  }
   properties: {
-    workspaceId: logAnalyticsWorkspace.id
+    workspaceResourceId: logAnalyticsWorkspace.id
+  }
+  plan: {
+    name: 'SecurityInsights(${logAnalyticsWorkspace.name})'
+    publisher: 'Microsoft'
+    product: 'OMSGallery/SecurityInsights'
+    promotionCode: ''
   }
 }
 
