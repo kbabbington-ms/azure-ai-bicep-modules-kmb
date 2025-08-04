@@ -126,7 +126,7 @@ The repository implements Microsoft's SFI-W1 (Secure Future Initiative - Wave 1)
 
 ---
 
-## 🔐 **AZTS IMPLEMENTATION GUIDE**
+## 🔐 **AzTS IMPLEMENTATION GUIDE**
 
 ### **🛠️ AzTS Setup for AI Workloads**
 
