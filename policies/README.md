@@ -171,27 +171,9 @@ Deploy all policies across all resource types:
 
 ## Migration from Legacy Structure
 
-This organized structure replaces the previous flat directory structure in `bicep/policy/foundry/`. Key improvements:
+This organized structure provides comprehensive policy governance for all Azure AI services with proper categorization and enterprise-grade organization.
 
-### **Before (Legacy)**
-```
-bicep/policy/foundry/
-├── SFI-W1-Def-Foundry-*.bicep (all mixed together)
-├── policy-definition-sfi-*.bicep (old naming)
-├── SFI-W1-*.bicep (inconsistent naming)
-└── README-*.md (mixed documentation)
-```
-
-### **After (Organized)**
-```
-AzPolicy/
-├── definitions/[resource-type]/
-├── initiatives/[resource-type]/
-├── docs/[resource-type]/
-└── scripts/[resource-type]/
-```
-
-## Benefits of New Structure
+## Benefits of Structure
 
 1. **🎯 Resource-Focused Organization**: Easy to find policies for specific Azure services
 2. **📦 Modular Deployment**: Deploy only the policies you need
@@ -199,13 +181,6 @@ AzPolicy/
 4. **🚀 Automated Deployment**: Resource-specific deployment scripts
 5. **🔄 Easier Maintenance**: Logical grouping reduces complexity
 6. **👥 Team Collaboration**: Teams can own specific resource areas
-
-## Next Steps
-
-1. **Migrate Existing Files**: Move current policies from `bicep/policy/foundry/` to appropriate resource folders
-2. **Update References**: Update any hard-coded paths in deployment scripts
-3. **Create Resource READMEs**: Add specific documentation for each resource type
-4. **Test Deployments**: Validate that all policies deploy correctly in new structure
 
 ## Compliance Framework
 

@@ -25,11 +25,7 @@ Welcome to the comprehensive documentation ecosystem for the Azure AI Bicep Modu
 
 | Document | Description | Status |
 |---|---|---|
-| [`FOLDER-STRUCTURE-RECOMMENDATIONS.md`](governance/FOLDER-STRUCTURE-RECOMMENDATIONS.md) | Repository organization and best practices | ✅ Complete |
-| [`PARAMETER-DOCUMENTATION-COMPLETE.md`](governance/PARAMETER-DOCUMENTATION-COMPLETE.md) | Documentation standards and guidelines | ✅ Complete |
 | [`PROJECT-COMPLETION-REPORT.md`](governance/PROJECT-COMPLETION-REPORT.md) | Comprehensive project completion analysis | ✅ Complete |
-| [`PROJECT-NEXT-STEPS.md`](governance/PROJECT-NEXT-STEPS.md) | Future roadmap and enhancement planning | ✅ Complete |
-| [`PROJECT-PROGRESS.md`](governance/PROJECT-PROGRESS.md) | Development progress tracking and milestones | ✅ Complete |
 
 ### 🔗 **Integration** (`integration/`)
 **Purpose**: Service integration guides, checklists, and setup procedures

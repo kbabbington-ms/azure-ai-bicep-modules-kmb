@@ -120,7 +120,7 @@ azure-ai-bicep-modules/
 │   ├── staging/                    # Staging environment
 │   └── prod/                       # Production environment
 ├── 🤝 shared/                       # Shared resources and templates
-│   ├── templates/                  # Common Bicep templates (from bicep/resources)
+│   ├── templates/                  # Common Bicep templates
 │   │   ├── ai-services/            # Organized AI service templates
 │   │   ├── monitoring/             # Monitoring and logging templates
 │   │   └── security/               # Security and networking templates
@@ -141,12 +141,7 @@ azure-ai-bicep-modules/
 │   ├── deployment/                 # Deployment guides and procedures
 │   │   └── GITHUB-SETUP.md         # GitHub Actions setup guide
 │   ├── governance/                 # Project governance and tracking
-│   │   ├── FOLDER-STRUCTURE-RECOMMENDATIONS.md # Repository organization
-│   │   ├── PARAMETER-DOCUMENTATION-COMPLETE.md # Documentation standards
-│   │   ├── PROJECT-COMPLETION-REPORT.md # Project completion analysis
-│   │   ├── PROJECT-NEXT-STEPS.md   # Future roadmap planning
-│   │   ├── PROJECT-PROGRESS.md     # Development progress tracking
-│   │   └── RESOURCE-MODULE-DEVELOPMENT-STANDARD.md # **NEW**: Module development guide
+│   │   └── PROJECT-COMPLETION-REPORT.md # Project completion analysis
 │   ├── integration/                # Service integration guides
 │   │   ├── AI-FOUNDRY-CHECKLIST.md # AI Foundry integration steps
 │   │   ├── COGNITIVE-SEARCH-CHECKLIST.md # Cognitive Search setup
