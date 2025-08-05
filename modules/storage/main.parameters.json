@@ -1,0 +1,144 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "eastus"
+    },
+    "environment": {
+      "value": "dev"
+    },
+    "projectName": {
+      "value": "ai-enclave"
+    },
+    "storageAccountName": {
+      "value": ""
+    },
+    "storageAccountSku": {
+      "value": "Standard_LRS"
+    },
+    "storageAccountKind": {
+      "value": "StorageV2"
+    },
+    "accessTier": {
+      "value": "Hot"
+    },
+    "enableHierarchicalNamespace": {
+      "value": false
+    },
+    "enableNfsV3": {
+      "value": false
+    },
+    "enableSftp": {
+      "value": false
+    },
+    "allowBlobPublicAccess": {
+      "value": false
+    },
+    "allowSharedKeyAccess": {
+      "value": false
+    },
+    "supportsHttpsTrafficOnly": {
+      "value": true
+    },
+    "minimumTlsVersion": {
+      "value": "TLS1_2"
+    },
+    "networkAcls": {
+      "value": {
+        "bypass": "AzureServices",
+        "defaultAction": "Deny",
+        "ipRules": [],
+        "virtualNetworkRules": []
+      }
+    },
+    "enableBlobPrivateEndpoint": {
+      "value": true
+    },
+    "enableFilePrivateEndpoint": {
+      "value": true
+    },
+    "enableQueuePrivateEndpoint": {
+      "value": false
+    },
+    "enableTablePrivateEndpoint": {
+      "value": false
+    },
+    "privateEndpointSubnetId": {
+      "value": ""
+    },
+    "privateDnsZoneIds": {
+      "value": {
+        "blob": "",
+        "file": "",
+        "queue": "",
+        "table": ""
+      }
+    },
+    "enableCustomerManagedEncryption": {
+      "value": true
+    },
+    "keyVaultUri": {
+      "value": ""
+    },
+    "encryptionKeyName": {
+      "value": "storage-encryption-key"
+    },
+    "userAssignedIdentityId": {
+      "value": ""
+    },
+    "blobContainers": {
+      "value": [
+        {
+          "name": "ai-models",
+          "publicAccess": "None",
+          "metadata": {}
+        },
+        {
+          "name": "training-data",
+          "publicAccess": "None",
+          "metadata": {}
+        },
+        {
+          "name": "inference-results",
+          "publicAccess": "None",
+          "metadata": {}
+        }
+      ]
+    },
+    "fileShares": {
+      "value": [
+        {
+          "name": "ai-shared-storage",
+          "quota": 100,
+          "enabledProtocols": "SMB",
+          "rootSquash": "NoRootSquash",
+          "accessTier": "TransactionOptimized"
+        }
+      ]
+    },
+    "queues": {
+      "value": []
+    },
+    "tables": {
+      "value": []
+    },
+    "enableDiagnostics": {
+      "value": true
+    },
+    "logAnalyticsWorkspaceId": {
+      "value": ""
+    },
+    "diagnosticStorageAccountId": {
+      "value": ""
+    },
+    "tags": {
+      "value": {
+        "Environment": "dev",
+        "Project": "ai-enclave",
+        "CostCenter": "IT",
+        "Owner": "AI Team"
+      }
+    }
+  }
+}

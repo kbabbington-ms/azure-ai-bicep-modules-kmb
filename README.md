@@ -12,10 +12,18 @@ This repository represents the **gold standard** for Azure AI Infrastructure-as-
 | **🤖 AI Foundry** | 10 policies | Model governance, Content filtering, Audit trails | ✅ Complete |
 | **🔑 Key Vault** | 9 policies | Secret management, Access control, HSM backing | ✅ Complete |
 | **🔒 Cognitive Services** | 8+ policies | SKU control, Private endpoints, Encryption | ✅ Complete |
-| **🛡️ Content Safety** | 1 policy | Safety thresholds, Content moderation | ✅ Complete |
+| **� Azure OpenAI** | 4 policies | Private endpoints, CMK, Content filtering, SKU control | ✅ **NEW** |
+| **🧠 Machine Learning** | 2 policies | Private endpoints, HBI configuration, Zero-trust | ✅ **NEW** |
+| **🔍 Cognitive Search** | 2 policies | Private endpoints, SKU restrictions, Performance | ✅ **NEW** |
+| **📄 Document Intelligence** | 1 policy | Private endpoints, Secure document processing | ✅ **NEW** |
+| **📊 Monitoring & Audit** | 1 policy | Diagnostic settings, Compliance monitoring | ✅ **NEW** |
+| **🔐 Identity & Access** | 1 policy | Managed identities, Zero-trust authentication | ✅ **NEW** |
+| **�🛡️ Content Safety** | 1 policy | Safety thresholds, Content moderation | ✅ Complete |
 | **⚡ Logic Apps** | 1 policy | Workflow security, Integration governance | ✅ Complete |
 | **🎥 Video Indexer** | 1 policy | Privacy compliance, Content processing | ✅ Complete |
 | **📊 General Security** | 2+ policies | Cross-service controls, Compliance automation | ✅ Complete |
+
+**🎉 MAJOR UPDATE**: Added **11 new SFI-W1 compliant policy definitions** and **2 comprehensive initiatives** covering all AI modules!
 
 #### **🚀 SFI & AzTS Integration**
 
@@ -31,11 +39,13 @@ Complete integration with Microsoft's security frameworks:
 
 **📚 Comprehensive Guide**: See [`docs/SFI & AzTS/Azure-AI-Security-Framework-Integration-Guide.md`](docs/SFI%20&%20AzTS/Azure-AI-Security-Framework-Integration-Guide.md) for complete implementation details.
 
+**🎯 NEW: Complete AI Policy Framework**: See [`policies/AI-SFI-POLICY-FRAMEWORK.md`](policies/AI-SFI-POLICY-FRAMEWORK.md) for the comprehensive SFI-W1 and AzTS policy implementation covering all 20 AI modules.
+
 ## 🛡️ **Complete Policy-as-Code Framework**
 
 ### **SFI-W1 Compliance Implementation** (100% Complete)
 
-Our comprehensive Policy-as-Code framework ensures **Microsoft Secure Future Initiative (SFI-W1)** compliance across all Azure AI workloads with 39+ policy definitions across 12 security categories:ce for secure Azure AI deployments.
+Our comprehensive Policy-as-Code framework ensures **Microsoft Secure Future Initiative (SFI-W1)** compliance across all Azure AI workloads with **50+ policy definitions** across **18 security categories** including complete coverage for all 20 AI modules.
 
 **🏆 PROJECT STATUS: 100% COMPLETE** - All modules delivered and production-validated!
 
@@ -135,7 +145,8 @@ azure-ai-bicep-modules/
 │   │   ├── PARAMETER-DOCUMENTATION-COMPLETE.md # Documentation standards
 │   │   ├── PROJECT-COMPLETION-REPORT.md # Project completion analysis
 │   │   ├── PROJECT-NEXT-STEPS.md   # Future roadmap planning
-│   │   └── PROJECT-PROGRESS.md     # Development progress tracking
+│   │   ├── PROJECT-PROGRESS.md     # Development progress tracking
+│   │   └── RESOURCE-MODULE-DEVELOPMENT-STANDARD.md # **NEW**: Module development guide
 │   ├── integration/                # Service integration guides
 │   │   ├── AI-FOUNDRY-CHECKLIST.md # AI Foundry integration steps
 │   │   ├── COGNITIVE-SEARCH-CHECKLIST.md # Cognitive Search setup
@@ -797,11 +808,12 @@ Each module includes comprehensive testing:
 
 ### Adding New Modules
 1. Create module directory under `modules/`
-2. Include main Bicep file with comprehensive parameters
-3. Add parameters file with secure defaults
-4. Create test file with multiple scenarios
-5. Write deployment scripts (Bash and PowerShell)
-6. Document with security implications
+2. **Follow the [Resource Module Development Standard](docs/governance/RESOURCE-MODULE-DEVELOPMENT-STANDARD.md)**
+3. Include main Bicep file with comprehensive parameters
+4. Add parameters file with secure defaults
+5. Create test file with multiple scenarios
+6. Write deployment scripts (Bash and PowerShell)
+7. Document with security implications
 
 ### Security Review Checklist
 - [ ] No secrets in parameters or outputs
@@ -810,6 +822,7 @@ Each module includes comprehensive testing:
 - [ ] Encryption enabled by default
 - [ ] Managed identity preferred over keys
 - [ ] Compliance features documented
+- [ ] **Follows enterprise module development standard**
 
 ## 📖 Documentation
 

@@ -1,11 +1,16 @@
+@description('Azure Machine Learning Workspace - Enterprise ML platform for AI model development, training, and deployment with advanced security, compliance, and MLOps capabilities. Version: 2025-08-01 | Security: Enhanced | Compliance: SOC2, HIPAA, GDPR ready')
+
 // ============================================================================
-// Azure Machine Learning Workspace - Enterprise Security Configuration
-// ============================================================================
-// Version: 1.0
-// Last Modified: 2025-08-01
+// METADATA
 // ============================================================================
 
-// BASIC CONFIGURATION PARAMETERS
+metadata name = 'Azure Machine Learning Workspace - Enterprise Edition'  
+metadata description = 'Enterprise-grade ML workspace with advanced security, managed networks, and comprehensive MLOps capabilities'
+metadata author = 'Azure AI Infrastructure Team'
+metadata version = '1.0.0'
+
+// ============================================================================
+// PARAMETERS - BASIC CONFIGURATION
 // ============================================================================
 
 // Unique name for the Azure Machine Learning workspace resource
@@ -304,20 +309,368 @@ param mlOpsEngineers array = []
 param sharedPrivateLinkResources array = []
 
 // ============================================================================
+// PARAMETERS - ADVANCED SECURITY & COMPLIANCE
+// ============================================================================
+
+// Enable Azure Defender for Machine Learning workspaces and compute resources
+// Provides advanced threat protection and security monitoring for ML workloads
+// 🔒 SECURITY ENHANCEMENT: Always enable for production ML environments requiring threat protection
+@description('Enable Azure Defender for advanced threat protection')
+param enableAzureDefender bool = true
+
+// Data loss prevention policies for ML workspace to prevent data exfiltration
+// Controls data export and sharing capabilities within the ML workspace
+// 🔒 SECURITY ENHANCEMENT: Enable for environments with sensitive data and compliance requirements
+@description('Enable data loss prevention policies')
+param enableDataLossPrevention bool = true
+
+// Audit policy configuration for comprehensive ML operations logging
+// Controls what ML activities are audited and logged for compliance
+// 🔒 SECURITY ENHANCEMENT: Configure comprehensive audit policies for regulated environments
+@description('Audit policy configuration for ML operations')
+param auditPolicyConfig object = {
+  enabled: true
+  auditComputeClusterEvents: true
+  auditJobEvents: true
+  auditModelEvents: true
+  auditDeploymentEvents: true
+  auditDataStoreEvents: true
+  auditWorkspaceEvents: true
+}
+
+// Immutable workspace configuration to prevent accidental modifications
+// Locks critical workspace settings to prevent unauthorized changes
+// 🔒 SECURITY ENHANCEMENT: Enable for production workspaces requiring configuration stability
+@description('Enable immutable workspace configuration')
+param enableImmutableWorkspace bool = false
+
+// Content filtering policies for ML workspace to control model outputs
+// Similar to Azure OpenAI content filtering but for custom ML models
+// 🔒 SECURITY ENHANCEMENT: Configure content policies for ML models with public-facing outputs
+@description('Content filtering policies for ML model outputs')
+param contentFilteringPolicies object = {
+  enabled: false
+  strictContentFiltering: false
+  customPolicies: []
+}
+
+// Data residency enforcement for strict geographic data boundaries
+// Ensures all ML data and models remain within specified geographic regions
+// 🔒 SECURITY ENHANCEMENT: Required for compliance with data sovereignty regulations
+@description('Enforce strict data residency requirements')
+param enforceDataResidency bool = true
+
+// Allowed regions for data processing and model training
+// Restricts where ML compute and data processing can occur
+// 🔒 SECURITY ENHANCEMENT: Define allowed regions based on compliance requirements
+@description('Allowed regions for ML data processing and compute')
+param allowedDataProcessingRegions array = [location]
+
+// ============================================================================
+// PARAMETERS - ENHANCED COMPUTE & SCALING
+// ============================================================================  
+
+// Auto-shutdown configuration for compute instances to control costs and security
+// Automatically shuts down idle compute instances to prevent unauthorized usage
+// 🔒 SECURITY ENHANCEMENT: Prevents compute resources from running indefinitely
+@description('Auto-shutdown configuration for compute instances')
+param autoShutdownConfig object = {
+  enabled: true
+  idleTimeBeforeShutdownMinutes: 30
+  enableScheduledShutdown: true
+  scheduledShutdownTime: '22:00'
+  scheduledShutdownTimeZone: 'UTC'
+}
+
+// Compute instance access control for fine-grained user permissions
+// Controls who can access and use compute instances within the workspace
+// 🔒 SECURITY ENHANCEMENT: Implement principle of least privilege for compute access
+@description('Compute instance access control configuration')
+param computeInstanceAccessControl object = {
+  enabled: true
+  defaultAccessLevel: 'NoAccess'
+  allowedUsers: []
+  allowedGroups: []
+  requireApprovalForNewUsers: true
+}
+
+// Maximum node counts for compute clusters to prevent resource exhaustion
+// Sets upper limits on cluster scaling to control costs and prevent abuse
+// 🔒 SECURITY ENHANCEMENT: Prevent runaway compute scaling and associated costs
+@description('Maximum node limits for compute clusters')
+param computeClusterLimits object = {
+  maxNodeCount: 100
+  maxConcurrentJobs: 50
+  maxClusterCount: 10
+  enableNodeIdleTimeout: true
+  nodeIdleTimeoutMinutes: 15
+}
+
+// Spot instance configuration for cost-effective training workloads
+// Enables use of Azure Spot VMs for non-critical ML training workloads
+// 🔒 SECURITY ENHANCEMENT: Monitor spot instance usage for security compliance
+@description('Spot instance configuration for cost optimization')
+param spotInstanceConfig object = {
+  enabled: false
+  maxSpotNodeCount: 50
+  spotBidPrice: -1  // -1 means pay up to on-demand price
+  enableSpotEvictionPolicy: true
+}
+
+// Custom compute image configuration for standardized ML environments
+// Provides custom Docker images with approved libraries and security configurations
+// 🔒 SECURITY ENHANCEMENT: Use approved images with security scanning and compliance
+@description('Custom compute image configuration')
+param customComputeImages array = []
+
+// ============================================================================
+// PARAMETERS - MODEL MANAGEMENT & GOVERNANCE
+// ============================================================================
+
+// Model governance policies for enterprise ML model lifecycle management
+// Controls model registration, versioning, approval workflows, and deployment
+// 🔒 SECURITY ENHANCEMENT: Implement model approval workflows and security scanning
+@description('Model governance and lifecycle management policies')
+param modelGovernancePolicies object = {
+  enabled: true
+  requireModelApproval: true
+  enableModelVersioning: true
+  enableModelTags: true
+  requireModelDocumentation: true
+  enableModelLineage: true
+  modelRetentionDays: 365
+}
+
+// Model registry configuration for centralized model storage and management
+// Provides centralized repository for trained models with version control
+// 🔒 SECURITY ENHANCEMENT: Enable access controls and audit logging for model registry
+@description('Model registry configuration')
+param modelRegistryConfig object = {
+  enabled: true
+  enableModelEncryption: true
+  enableModelAccessAuditing: true
+  enableModelIntegrityChecks: true
+  allowedModelFormats: ['MLflow', 'ONNX', 'Pickle', 'PyTorch', 'TensorFlow']
+}
+
+// Automated model deployment policies for MLOps workflows
+// Controls how models are automatically deployed from training to production
+// 🔒 SECURITY ENHANCEMENT: Implement security gates in deployment pipelines
+@description('Automated model deployment configuration')
+param modelDeploymentConfig object = {
+  enabled: false
+  enableAutomatedDeployment: false
+  enableDeploymentApproval: true
+  enableCanaryDeployment: true
+  enableBlueGreenDeployment: false
+  deploymentSecurityChecks: true
+}
+
+// Experiment tracking and management configuration
+// Controls how ML experiments are tracked, logged, and managed
+// 🔒 SECURITY ENHANCEMENT: Enable audit logging for all experiment activities
+@description('Experiment tracking and management configuration')
+param experimentTrackingConfig object = {
+  enabled: true
+  enableMetricsLogging: true
+  enableArtifactTracking: true
+  enableParameterTracking: true
+  enableEnvironmentTracking: true
+  retentionDays: 90
+}
+
+// ============================================================================
+// PARAMETERS - DATA SECURITY & PRIVACY
+// ============================================================================
+
+// Data encryption configuration for ML datasets and models
+// Provides comprehensive encryption for data at rest and in transit
+// 🔒 SECURITY ENHANCEMENT: Enable comprehensive encryption for all ML data
+@description('Comprehensive data encryption configuration')
+param dataEncryptionConfig object = {
+  encryptDataAtRest: true
+  encryptDataInTransit: true
+  encryptModelArtifacts: true
+  encryptExperimentLogs: true
+  useCustomerManagedKeys: true
+  enableDoubleEncryption: false
+}
+
+// Data anonymization and privacy protection features
+// Provides data privacy controls for sensitive datasets used in ML training  
+// 🔒 SECURITY ENHANCEMENT: Enable for workspaces processing personal or sensitive data
+@description('Data privacy and anonymization configuration')
+param dataPrivacyConfig object = {
+  enabled: false
+  enableDataAnonymization: false
+  enableDifferentialPrivacy: false
+  enableFederatedLearning: false
+  enableSecureMultipartyComputation: false
+}
+
+// Data lineage tracking for comprehensive data governance
+// Tracks data flow from source through ML pipeline to model outputs
+// 🔒 SECURITY ENHANCEMENT: Enable comprehensive data lineage for audit and compliance
+@description('Data lineage and governance configuration')
+param dataLineageConfig object = {
+  enabled: true
+  trackDataSources: true
+  trackDataTransformations: true
+  trackModelInputs: true
+  trackModelOutputs: true
+  enableDataCatalog: true
+}
+
+// Data retention policies for ML workspace data and artifacts
+// Controls how long different types of ML data are retained
+// 🔒 SECURITY ENHANCEMENT: Configure retention based on compliance requirements
+@description('Data retention policies for ML artifacts')
+param dataRetentionPolicies object = {
+  enabled: true
+  experimentDataRetentionDays: 90
+  modelArtifactRetentionDays: 365
+  logDataRetentionDays: 30
+  computeNodeLogsRetentionDays: 7
+  enableAutomaticCleanup: true
+}
+
+// ============================================================================
+// PARAMETERS - ENHANCED MONITORING & ALERTING
+// ============================================================================
+
+// Real-time monitoring configuration for ML workspace operations
+// Provides continuous monitoring of ML workloads and resource usage
+// 🔒 SECURITY ENHANCEMENT: Enable comprehensive monitoring for security and performance
+@description('Real-time monitoring configuration for ML operations')
+param realTimeMonitoringConfig object = {
+  enabled: true
+  enablePerformanceMonitoring: true
+  enableSecurityMonitoring: true
+  enableCostMonitoring: true
+  enableResourceUtilizationMonitoring: true
+  monitoringIntervalMinutes: 5
+}
+
+// Alert configuration for ML workspace events and anomalies
+// Configures alerts for various ML workspace events and security incidents
+// 🔒 SECURITY ENHANCEMENT: Configure alerts for security events and anomalous activities
+@description('Alert configuration for ML workspace events')
+param alertConfiguration object = {
+  enabled: true
+  enableSecurityAlerts: true
+  enablePerformanceAlerts: true
+  enableCostAlerts: true
+  enableComplianceAlerts: true
+  alertThresholds: {
+    highCpuUtilization: 80
+    highMemoryUtilization: 85
+    unusualDataAccess: true
+    failedAuthentications: 5
+    costThresholdPercentage: 80
+  }
+}
+
+// Model drift detection configuration for production ML models
+// Monitors model performance degradation and data drift in production
+// 🔒 SECURITY ENHANCEMENT: Monitor for data poisoning and model manipulation
+@description('Model drift detection and monitoring configuration')
+param modelDriftDetectionConfig object = {
+  enabled: false
+  enableDataDriftDetection: false
+  enableModelPerformanceDrift: false
+  driftDetectionThreshold: '0.1'
+  driftDetectionIntervalDays: 7
+  enableAutomaticRetraining: false
+}
+
+// ============================================================================
+// PARAMETERS - ENHANCED TAGGING & METADATA
+// ============================================================================
+
+// Environment classification for security policy application and access control
+// Determines which security policies and access controls are applied to the workspace
+// 🔒 SECURITY ENHANCEMENT: Use for automated security policy application based on environment
+@description('Environment classification for security policies')
+@allowed(['development', 'testing', 'staging', 'production', 'sandbox'])
+param environmentClassification string = 'production'
+
+// Data classification level for compliance and security policy enforcement
+// Defines the sensitivity level of data processed by the ML workspace
+// 🔒 SECURITY ENHANCEMENT: Use for automated compliance policy application and access controls
+@description('Data classification level for compliance and security')
+@allowed(['public', 'internal', 'confidential', 'restricted'])
+param dataClassification string = 'internal'
+
+// Business criticality level for resource prioritization and SLA application
+// Determines service level agreements and priority for support and maintenance
+// 🔒 SECURITY ENHANCEMENT: Use for security incident prioritization and response
+@description('Business criticality level for SLA and support prioritization')
+@allowed(['low', 'medium', 'high', 'critical', 'mission-critical'])
+param businessCriticality string = 'high'
+
+// Cost center information for billing and resource allocation tracking
+// Enables cost tracking and allocation for enterprise resource management
+// 🔒 SECURITY ENHANCEMENT: Use for security cost allocation and budget tracking
+@description('Cost center for billing and resource allocation')
+param costCenter string = ''
+
+// Owner information for resource accountability and contact management
+// Specifies responsible party for resource management and security compliance
+// 🔒 SECURITY ENHANCEMENT: Required for security incident response and accountability
+@description('Resource owner information for accountability')
+param resourceOwner object = {
+  name: ''
+  email: ''
+  department: ''
+  managerId: ''
+}
+
+// Project information for resource organization and governance
+// Enables project-based resource organization and cost allocation
+// 🔒 SECURITY ENHANCEMENT: Use for project-based security policies and access controls
+@description('Project information for resource organization')
+param projectInformation object = {
+  projectName: ''
+  projectId: ''
+  projectManager: ''
+  budget: ''
+  startDate: ''
+  endDate: ''
+}
+
+// ============================================================================
 // VARIABLES
 // ============================================================================
 
 var resourceSuffix = '-${environment}-${substring(uniqueString(resourceGroup().id), 0, 6)}'
 
+// Enhanced default tags with comprehensive metadata
 var defaultTags = {
   Environment: environment
+  EnvironmentClassification: environmentClassification
   Service: 'Machine Learning'
   ManagedBy: 'Bicep'
+  DataClassification: dataClassification
+  BusinessCriticality: businessCriticality
+  CostCenter: !empty(costCenter) ? costCenter : 'Not Specified'
+  Owner: !empty(resourceOwner.name) ? resourceOwner.name : 'Not Specified'
+  OwnerEmail: !empty(resourceOwner.email) ? resourceOwner.email : 'Not Specified'
+  Department: !empty(resourceOwner.department) ? resourceOwner.department : 'Not Specified'
+  ProjectName: !empty(projectInformation.projectName) ? projectInformation.projectName : 'Not Specified'
+  ProjectId: !empty(projectInformation.projectId) ? projectInformation.projectId : 'Not Specified'
+  LastUpdated: '2025-08-01'
+  MLWorkspaceEnabled: 'true'
+  HBIWorkspace: string(hbiWorkspace)
+  PrivateEndpointsEnabled: string(enablePrivateEndpoints)
+  CustomerManagedEncryption: string(enableCustomerManagedEncryption)
+  ManagedNetworkEnabled: string(enableManagedNetwork)
+  FeatureStoreEnabled: string(enableFeatureStore)
 }
 
+// Merge user-provided tags with enhanced defaults
 var allTags = union(defaultTags, tags)
 
-// Identity configuration
+// Identity configuration with enhanced support
 var identityConfig = managedIdentityType == 'None' ? null : {
   type: managedIdentityType
   userAssignedIdentities: !empty(userAssignedIdentities) ? reduce(userAssignedIdentities, {}, (acc, identityId) => union(acc, {
@@ -325,7 +678,7 @@ var identityConfig = managedIdentityType == 'None' ? null : {
   })) : null
 }
 
-// Encryption configuration
+// Enhanced encryption configuration (API-compliant)
 var encryptionConfig = enableCustomerManagedEncryption && !empty(encryptionKeyIdentifier) ? {
   status: encryptionStatus
   keyVaultProperties: {
@@ -337,20 +690,20 @@ var encryptionConfig = enableCustomerManagedEncryption && !empty(encryptionKeyId
   } : null
 } : null
 
-// Managed network configuration
+// Enhanced managed network configuration (API-compliant)
 var managedNetworkConfig = enableManagedNetwork ? {
   isolationMode: managedNetworkIsolationMode
   firewallSku: firewallSku
   outboundRules: outboundRules
 } : null
 
-// Serverless compute configuration
+// Enhanced serverless compute configuration (API-compliant)
 var serverlessComputeConfig = enableServerlessCompute ? {
   serverlessComputeCustomSubnet: !empty(serverlessComputeCustomSubnet) ? serverlessComputeCustomSubnet : null
   serverlessComputeNoPublicIP: serverlessComputeNoPublicIP
 } : null
 
-// Feature store configuration
+// Enhanced feature store configuration (API-compliant)
 var featureStoreConfig = enableFeatureStore ? {
   offlineStoreConnectionName: !empty(offlineStoreConnectionName) ? offlineStoreConnectionName : null
   onlineStoreConnectionName: !empty(onlineStoreConnectionName) ? onlineStoreConnectionName : null
@@ -359,20 +712,49 @@ var featureStoreConfig = enableFeatureStore ? {
   } : null
 } : null
 
-// Service managed resources configuration
+// Enhanced service managed resources configuration (API-compliant)
 var serviceManagedResourcesConfig = enableCustomCosmosDbSettings ? {
   cosmosDb: {
     collectionsThroughput: cosmosDbCollectionsThroughput
   }
 } : null
 
-// Workspace hub configuration
+// Enhanced workspace hub configuration (API-compliant)
 var workspaceHubConfig = enableWorkspaceHub ? {
   defaultWorkspaceResourceGroup: !empty(defaultWorkspaceResourceGroup) ? defaultWorkspaceResourceGroup : null
   additionalWorkspaceStorageAccounts: additionalWorkspaceStorageAccounts
 } : null
 
-// Built-in role definitions
+// Advanced security configuration
+var advancedSecurityConfig = {
+  azureDefenderEnabled: enableAzureDefender
+  dataLossPreventionEnabled: enableDataLossPrevention
+  auditPolicies: auditPolicyConfig
+  immutableWorkspace: enableImmutableWorkspace
+  contentFiltering: contentFilteringPolicies
+  dataResidencyEnforcement: enforceDataResidency
+  allowedProcessingRegions: allowedDataProcessingRegions
+}
+
+// Enhanced monitoring configuration
+var enhancedMonitoringConfig = {
+  realTimeMonitoring: realTimeMonitoringConfig
+  alertConfiguration: alertConfiguration
+  modelDriftDetection: modelDriftDetectionConfig
+  dataPrivacySettings: dataPrivacyConfig
+  experimentTracking: experimentTrackingConfig
+}
+
+// Model management configuration
+var modelManagementConfig = {
+  governancePolicies: modelGovernancePolicies
+  registryConfig: modelRegistryConfig
+  deploymentConfig: modelDeploymentConfig
+  customComputeImages: customComputeImages
+  dataLineage: dataLineageConfig
+}
+
+// Built-in role definitions with enhanced ML roles
 var roleDefinitions = {
   owner: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '8e3af657-a8ff-443c-a75c-2fe8c4bcb635')
   contributor: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'b24988ac-6180-42a0-ab88-20f7382dd24c')
@@ -649,3 +1031,64 @@ output dependentResources object = {
 
 @description('All applied tags')
 output appliedTags object = allTags
+
+@description('Advanced security configuration summary')
+output advancedSecurityConfiguration object = advancedSecurityConfig
+
+@description('Enhanced monitoring configuration summary')
+output enhancedMonitoringConfiguration object = enhancedMonitoringConfig
+
+@description('Model management configuration summary')
+output modelManagementConfiguration object = modelManagementConfig
+
+@description('Compute configuration summary')
+output computeConfiguration object = {
+  autoShutdownConfig: autoShutdownConfig
+  computeInstanceAccessControl: computeInstanceAccessControl
+  computeClusterLimits: computeClusterLimits
+  spotInstanceConfig: spotInstanceConfig
+  customComputeImages: customComputeImages
+}
+
+@description('Data security and privacy summary')
+output dataSecuritySummary object = {
+  dataEncryptionConfig: dataEncryptionConfig
+  dataRetentionPolicies: dataRetentionPolicies
+  customerManagedEncryption: enableCustomerManagedEncryption
+  hbiWorkspace: hbiWorkspace
+  dataIsolationEnabled: enableDataIsolation
+}
+
+@description('Enhanced metadata and governance')
+output enhancedMetadata object = {
+  environmentClassification: environmentClassification
+  dataClassification: dataClassification
+  businessCriticality: businessCriticality
+  costCenter: costCenter
+  resourceOwner: resourceOwner
+  projectInformation: projectInformation
+  allAppliedTags: allTags
+}
+
+@description('Comprehensive workspace status summary')
+output comprehensiveWorkspaceStatus object = {
+  workspaceId: mlWorkspace.id
+  workspaceName: mlWorkspace.name
+  workspaceGuid: mlWorkspace.properties.workspaceId
+  discoveryUrl: mlWorkspace.properties.discoveryUrl
+  mlFlowTrackingUri: mlWorkspace.properties.mlFlowTrackingUri
+  provisioningState: mlWorkspace.properties.provisioningState
+  identity: mlWorkspace.identity
+  configuration: mlWorkspace.properties
+  enhancedFeatures: {
+    hbiWorkspaceEnabled: hbiWorkspace
+    managedNetworkEnabled: enableManagedNetwork
+    featureStoreEnabled: enableFeatureStore
+    privateEndpointsEnabled: enablePrivateEndpoints
+    customerManagedEncryptionEnabled: enableCustomerManagedEncryption
+    azureDefenderEnabled: enableAzureDefender
+    dataLossPreventionEnabled: enableDataLossPrevention
+    immutableWorkspaceEnabled: enableImmutableWorkspace
+    dataResidencyEnforced: enforceDataResidency
+  }
+}

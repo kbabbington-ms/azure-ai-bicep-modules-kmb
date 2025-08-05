@@ -1,0 +1,102 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "eastus"
+    },
+    "environment": {
+      "value": "dev"
+    },
+    "projectName": {
+      "value": "ai-enclave"
+    },
+    "cognitiveServicesName": {
+      "value": ""
+    },
+    "cognitiveServicesKind": {
+      "value": "CognitiveServices"
+    },
+    "cognitiveServicesSku": {
+      "value": "S0"
+    },
+    "publicNetworkAccess": {
+      "value": false
+    },
+    "networkAcls": {
+      "value": {
+        "defaultAction": "Deny",
+        "ipRules": [],
+        "virtualNetworkRules": []
+      }
+    },
+    "enableCustomSubdomain": {
+      "value": true
+    },
+    "customSubdomainName": {
+      "value": ""
+    },
+    "enablePrivateEndpoint": {
+      "value": true
+    },
+    "privateEndpointSubnetId": {
+      "value": ""
+    },
+    "privateDnsZoneId": {
+      "value": ""
+    },
+    "enableCustomerManagedEncryption": {
+      "value": true
+    },
+    "keyVaultUri": {
+      "value": ""
+    },
+    "encryptionKeyName": {
+      "value": "ai-services-encryption-key"
+    },
+    "userAssignedIdentityId": {
+      "value": ""
+    },
+    "disableLocalAuth": {
+      "value": true
+    },
+    "enableDiagnostics": {
+      "value": true
+    },
+    "logAnalyticsWorkspaceId": {
+      "value": ""
+    },
+    "diagnosticStorageAccountId": {
+      "value": ""
+    },
+    "allowedFqdnList": {
+      "value": []
+    },
+    "apiProperties": {
+      "value": {}
+    },
+    "userOwnedStorage": {
+      "value": []
+    },
+    "enableSystemAssignedIdentity": {
+      "value": false
+    },
+    "userAssignedIdentityIds": {
+      "value": []
+    },
+    "enableCommitmentPlans": {
+      "value": false
+    },
+    "commitmentPlans": {
+      "value": []
+    },
+    "tags": {
+      "value": {
+        "Environment": "dev",
+        "Project": "ai-enclave",
+        "CostCenter": "IT",
+        "Owner": "AI Team"
+      }
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "eastus"
+    },
+    "environment": {
+      "value": "dev"
+    },
+    "projectName": {
+      "value": "ai-enclave"
+    },
+    "keyVaultName": {
+      "value": ""
+    },
+    "enableRbacAuthorization": {
+      "value": true
+    },
+    "enableSoftDelete": {
+      "value": true
+    },
+    "softDeleteRetentionInDays": {
+      "value": 90
+    },
+    "enablePurgeProtection": {
+      "value": true
+    },
+    "networkAcls": {
+      "value": {
+        "bypass": "AzureServices",
+        "defaultAction": "Deny",
+        "ipRules": [],
+        "virtualNetworkRules": []
+      }
+    },
+    "enableDiagnostics": {
+      "value": true
+    },
+    "logAnalyticsWorkspaceId": {
+      "value": ""
+    },
+    "diagnosticStorageAccountId": {
+      "value": ""
+    },
+    "managedIdentityIds": {
+      "value": []
+    },
+    "administratorObjectIds": {
+      "value": []
+    },
+    "secretsUserObjectIds": {
+      "value": []
+    },
+    "enablePrivateEndpoint": {
+      "value": true
+    },
+    "privateEndpointSubnetId": {
+      "value": ""
+    },
+    "privateDnsZoneId": {
+      "value": ""
+    },
+    "createCustomerManagedKeys": {
+      "value": true
+    },
+    "customerManagedKeys": {
+      "value": [
+        {
+          "name": "storage-encryption-key",
+          "keyType": "RSA",
+          "keySize": 2048,
+          "keyOps": ["encrypt", "decrypt", "wrapKey", "unwrapKey"]
+        },
+        {
+          "name": "ai-services-encryption-key",
+          "keyType": "RSA",
+          "keySize": 2048,
+          "keyOps": ["encrypt", "decrypt", "wrapKey", "unwrapKey"]
+        }
+      ]
+    },
+    "secretsToCreate": {
+      "value": []
+    },
+    "tags": {
+      "value": {
+        "Environment": "dev",
+        "Project": "ai-enclave",
+        "CostCenter": "IT",
+        "Owner": "AI Team"
+      }
+    }
+  }
+}

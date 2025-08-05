@@ -8,80 +8,90 @@
 ### **✅ Successfully Migrated Files**
 
 #### **AI Foundry Policies** (`definitions/ai-foundry/`)
-- ✅ `SFI-W1-Def-Foundry-AllowedAISku.bicep`
-- ✅ `SFI-W1-Def-Foundry-ModelVersionControl.bicep`
-- ✅ `SFI-W1-Def-Foundry-DataResidency.bicep`
-- ✅ `SFI-W1-Def-Foundry-PrivateEndpointAI.bicep`
-- ✅ `SFI-W1-Def-Foundry-DiagnosticLoggingAI.bicep`
-- ✅ `SFI-W1-Def-Foundry-KeyVaultAISecrets.bicep`
-- ✅ `SFI-W1-Def-Foundry-TaggingAI.bicep`
-- ✅ `SFI-W1-Def-Foundry-ManagedIdentityAI.bicep`
-- ✅ `SFI-W1-Def-Foundry-EncryptionTransitAI.bicep`
-- ✅ `SFI-W1-Def-Foundry-LogRetentionAI.bicep`
-
-**Total**: 10 policies
-
-#### **General Policies** (`definitions/general/`)
-- ✅ `SFI-W1-Def-Foundry-RequireCreatedByTag.bicep`
-- ✅ `SFI-W1-Def-Foundry-RestrictPublicNetworkAccess.bicep`
-- ✅ `SFI-W1-Def-Foundry-RequireDiagnosticLogging.bicep`
-- ✅ `SFI-W1-Def-Foundry-EnforceManagedIdentityUsage.bicep`
-- ✅ `SFI-W1-Def-Foundry-RequireEncryptionAtRest.bicep`
-- ✅ `SFI-W1-Def-Foundry-AdvancedMonitoring.bicep`
+- ✅ `SFI-W1-Def-AIFoundry-RequirePrivateEndpoints.bicep`
+- ✅ `SFI-W1-Def-AIFoundry-RequireCustomerManagedKeys.bicep`
+- ✅ `SFI-W1-Def-AIFoundry-DisablePublicNetworkAccess.bicep`
+- ✅ `SFI-W1-Def-AIFoundry-RequireUserAssignedIdentity.bicep`
+- ✅ `SFI-W1-Def-AIFoundry-DisableComputeLocalAuth.bicep`
+- ✅ `SFI-W1-Def-AIFoundry-RequireDiagnosticSettings.bicep`
 
 **Total**: 6 policies
 
-#### **Content Safety Policies** (`definitions/content-safety/`)
-- ✅ `SFI-W1-Def-Foundry-ContentSafety.bicep`
+#### **Cognitive Services Policies** (`definitions/cognitive-services/`)
+- ✅ `SFI-W1-Def-CogSvc-RequirePrivateEndpoints.bicep`
+- ✅ `SFI-W1-Def-CogSvc-RequireCustomerManagedKeys.bicep`
+- ✅ `SFI-W1-Def-CogSvc-RequireDiagnosticSettings.bicep`
+- ✅ `SFI-W1-Def-CogSvc-RequireHTTPS.bicep`
+- ✅ `SFI-W1-Def-CogSvc-RequireManagedIdentity.bicep`
+- ✅ `SFI-W1-Def-CogSvc-RestrictDataResidency.bicep`
+- ✅ `SFI-W1-Def-CogSvc-RestrictSKUs.bicep`
 
-**Total**: 1 policy
+**Total**: 7 policies
+
+#### **Content Safety Policies** (`definitions/content-safety/`)
+- ✅ `README-ContentSafety.md` (documentation only)
+
+**Total**: 1 documentation file
 
 #### **Video Indexer Policies** (`definitions/video-indexer/`)
-- ✅ `SFI-W1-Def-Foundry-VideoIndexer.bicep`
+- ✅ `README-VideoIndexer.md` (documentation only)
 
-**Total**: 1 policy
+**Total**: 1 documentation file
 
 #### **Logic Apps Policies** (`definitions/logic-apps/`)
-- ✅ `SFI-W1-Def-Foundry-LogicAppsAIWorkflows.bicep`
+- ✅ `README-LogicAppsAIWorkflows.md` (documentation only)
 
-**Total**: 1 policy
+**Total**: 1 documentation file
 
 #### **Key Vault Policies** (`definitions/key-vault/`)
+- ✅ `SFI-W1-Def-KeyVault-DisablePublicNetworkAccess.bicep`
+- ✅ `SFI-W1-Def-KeyVault-RequireCustomerManagedKeys.bicep`
+- ✅ `SFI-W1-Def-KeyVault-RequireDiagnosticSettings.bicep`
+- ✅ `SFI-W1-Def-KeyVault-RequireManagedIdentity.bicep`
+- ✅ `SFI-W1-Def-KeyVault-RequirePurgeProtection.bicep`
+- ✅ `SFI-W1-Def-KeyVault-RequireRBAC.bicep`
+- ✅ `SFI-W1-Def-KeyVault-RequireSoftDelete.bicep`
+- ✅ `SFI-W1-Def-Foundry-KeyVaultAISecrets.bicep`
 - ✅ `SFI-W1-Def-Foundry-RequireKeyVaultPrivateEndpoint.bicep`
+- ✅ `README-KeyVault.md` (documentation)
 
-**Total**: 1 policy
+**Total**: 9 policies + 1 documentation file
 
 #### **Policy Initiatives** (`initiatives/ai-foundry/`)
-- ✅ `SFI-W1-Ini-Foundry.bicep` (source)
-- ✅ `SFI-W1-Ini-Foundry.json` (compiled)
+- ✅ `SFI-W1-Ini-AIFoundry.bicep` (source)
+- ✅ `README.md` (comprehensive documentation)
 
-**Total**: 2 files
+**Total**: 1 initiative + 1 documentation file
 
 #### **Documentation** 
-- ✅ `docs/general/README-AdvancedMonitoring.md`
-- ✅ `docs/content-safety/README-ContentSafety.md`
-- ✅ `docs/logic-apps/README-LogicAppsAIWorkflows.md`
-- ✅ `docs/video-indexer/README-VideoIndexer.md`
-- ✅ `docs/ai-foundry/README-AIFoundry.md`
-- ✅ `docs/general/DEPLOYMENT_INSTRUCTIONS.md`
+- ✅ `docs/governance/POLICY-ADVANCED-MONITORING.md` (cross-service monitoring, moved to main docs)
+- ✅ `definitions/content-safety/README-ContentSafety.md` (moved from docs/)
+- ✅ `definitions/logic-apps/README-LogicAppsAIWorkflows.md` (moved from docs/)
+- ✅ `definitions/video-indexer/README-VideoIndexer.md` (moved from docs/)
+- ✅ `initiatives/ai-foundry/README.md` (comprehensive new version)
+- ✅ `docs/governance/POLICY-DEPLOYMENT-INSTRUCTIONS.md` (cross-service deployment, moved to main docs)
 
 **Total**: 6 documentation files
 
 #### **Deployment Scripts**
-- ✅ `scripts/general/deploy-all-policies.sh`
-- ✅ `scripts/general/Deploy-AllPolicies.ps1`
+- ✅ `scripts/policies/general/deploy-all-policies.sh` (moved from policies/scripts/)
+- ✅ `scripts/policies/general/Deploy-AllPolicies.ps1` (moved from policies/scripts/)
+- ✅ `scripts/policies/Deploy-AI-SFI-Policies.ps1` (moved from policies/scripts/)
+- ✅ `scripts/policies/deploy-ai-sfi-policies.sh` (moved from policies/scripts/)
+- ✅ `scripts/policies/Deploy-SFI-Policies.ps1` (moved from policies/scripts/)
+- ✅ `scripts/policies/services/key-vault/` (service-specific scripts moved)
 
-**Total**: 2 deployment scripts
+**Total**: 6+ deployment scripts
 
 ## **📊 Migration Statistics**
 
 | Category | Migrated Files | Destination |
 |----------|---------------|-------------|
-| **Policy Definitions** | 20 files | `definitions/[resource-type]/` |
-| **Policy Initiatives** | 2 files | `initiatives/ai-foundry/` |
-| **Documentation** | 6 files | `docs/[resource-type]/` |
-| **Deployment Scripts** | 2 files | `scripts/general/` |
-| **TOTAL** | **30 files** | **New Structure** |
+| **Policy Definitions** | 23 files | `definitions/[resource-type]/` |
+| **Policy Initiatives** | 1 file | `initiatives/ai-foundry/` |
+| **Documentation** | 9 files | `docs/governance/` + service directories |
+| **Deployment Scripts** | 6+ files | `scripts/policies/` |
+| **TOTAL** | **39+ files** | **New Structure** |
 
 ## **⚠️ Files Remaining for Review**
 
@@ -101,25 +111,28 @@ The following files remain in the original location and need evaluation:
 
 ### **Structure Verification**
 ```
-AzPolicy/
+policies/
 ├── definitions/
-│   ├── ai-foundry/ ............ ✅ 10 policies
-│   ├── cognitive-services/ .... ⭕ Ready for future policies
-│   ├── content-safety/ ........ ✅ 1 policy
-│   ├── general/ ............... ✅ 6 policies
-│   ├── key-vault/ ............. ✅ 1 policy
-│   ├── logic-apps/ ............ ✅ 1 policy
-│   └── video-indexer/ ......... ✅ 1 policy
+│   ├── ai-foundry/ ............. ✅ 6 policies
+│   ├── cognitive-services/ ..... ✅ 7 policies + README
+│   ├── content-safety/ ......... ✅ README only
+│   ├── key-vault/ .............. ✅ 9 policies + README
+│   ├── logic-apps/ ............. ✅ README only
+│   ├── video-indexer/ .......... ✅ README only
+│   ├── azure-openai/ ........... ✅ Ready for policies
+│   ├── cognitive-search/ ....... ✅ Ready for policies
+│   ├── document-intelligence/ .. ✅ Ready for policies
+│   ├── machine-learning/ ....... ✅ Ready for policies
+│   ├── compute/ ................ ✅ 1 policy
+│   ├── container-infrastructure/ ✅ 1 policy
+│   ├── data-services/ .......... ✅ Ready for policies
+│   ├── identity-access/ ........ ✅ Ready for policies
+│   ├── monitoring/ ............. ✅ Ready for policies
+│   ├── storage/ ................ ✅ Ready for policies
+│   └── virtual-network/ ........ ✅ Ready for policies
 ├── initiatives/
-│   └── ai-foundry/ ............ ✅ 2 files
-├── docs/
-│   ├── ai-foundry/ ............ ✅ 1 file
-│   ├── content-safety/ ........ ✅ 1 file
-│   ├── general/ ............... ✅ 2 files
-│   ├── logic-apps/ ............ ✅ 1 file
-│   └── video-indexer/ ......... ✅ 1 file
-└── scripts/
-    └── general/ ............... ✅ 2 files
+│   └── ai-foundry/ ............. ✅ 1 initiative + README
+└── README.md ................... ✅ Main policy framework docs
 ```
 
 ## **🎯 Next Steps**

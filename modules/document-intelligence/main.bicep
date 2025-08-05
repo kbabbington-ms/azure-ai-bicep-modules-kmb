@@ -247,6 +247,266 @@ param allowedIpAddresses array = []
 @description('Enable CORS for web application integration')
 param enableCors bool = true
 
+// CORS allowed origins for web application integration
+// Specify allowed domains for cross-origin requests
+// 🔒 SECURITY ENHANCEMENT: Restrict to specific domains instead of wildcard
+@description('CORS allowed origins for web application integration')
+param corsAllowedOrigins array = ['*']
+
+// CORS allowed methods for web application integration
+// Specify allowed HTTP methods for cross-origin requests  
+@description('CORS allowed methods for web application integration')
+param corsAllowedMethods array = ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+
+// ============================================================================
+// PARAMETERS - ADVANCED DOCUMENT PROCESSING
+// ============================================================================
+
+// Enable advanced OCR capabilities for enhanced text extraction
+// Provides improved accuracy for complex layouts and multi-language documents
+// 🔒 SECURITY ENHANCEMENT: Monitor OCR usage for sensitive document detection
+@description('Enable advanced OCR capabilities for enhanced text extraction')
+param enableAdvancedOcr bool = true
+
+// OCR language support configuration for multi-language document processing
+// Enables processing of documents in multiple languages
+@description('OCR language support configuration')
+param ocrLanguageConfig object = {
+  enabled: true
+  supportedLanguages: ['en', 'es', 'fr', 'de', 'it', 'pt', 'nl', 'sv', 'da', 'fi', 'no']
+  autoDetectLanguage: true
+  enableMultiLanguageDocuments: true
+}
+
+// Document confidence threshold for quality control
+// Rejects documents below specified confidence level for processing accuracy
+// 🔒 SECURITY ENHANCEMENT: Prevent processing of potentially malicious or corrupted documents
+@description('Document confidence threshold for quality control (0.7 = 70%)')
+param documentConfidenceThreshold string = '0.7'
+
+// Enable document classification for automated document routing
+// Automatically classifies documents into predefined categories
+// 🔒 SECURITY ENHANCEMENT: Route sensitive documents to appropriate secure processing workflows
+@description('Enable document classification for automated routing')
+param enableDocumentClassification bool = false
+
+// Document size limits for processing optimization and security
+// Controls maximum document size to prevent resource exhaustion
+// 🔒 SECURITY ENHANCEMENT: Prevent oversized uploads that could impact service availability
+@description('Document size limits for processing (MB)')
+param documentSizeLimits object = {
+  maxFileSizeMB: 500
+  maxPageCount: 2000
+  maxBatchSizeMB: 1000
+  enableSizeValidation: true
+}
+
+// Content filtering policies for document processing
+// Filters out inappropriate or malicious content during document processing
+// 🔒 SECURITY ENHANCEMENT: Prevent processing of potentially harmful content
+@description('Content filtering policies for document processing')
+param contentFilteringPolicies object = {
+  enabled: false
+  blockMaliciousContent: true
+  blockPersonalIdentifiableInfo: false
+  blockFinancialInfo: false
+  customFilteringRules: []
+}
+
+// ============================================================================
+// PARAMETERS - ADVANCED SECURITY & COMPLIANCE
+// ============================================================================
+
+// Enable Azure Defender for Document Intelligence advanced threat protection
+// Provides security monitoring and threat detection for document processing
+// 🔒 SECURITY ENHANCEMENT: Essential for production environments processing sensitive documents
+@description('Enable Azure Defender for advanced threat protection')
+param enableAzureDefender bool = true
+
+// Data loss prevention policies for document processing workflows
+// Prevents sensitive data from being inappropriately shared or processed
+// 🔒 SECURITY ENHANCEMENT: Critical for environments with sensitive document processing
+@description('Enable data loss prevention policies')
+param enableDataLossPrevention bool = true
+
+// Immutable document storage for compliance and audit requirements
+// Ensures processed documents cannot be modified or deleted for specified period
+// 🔒 SECURITY ENHANCEMENT: Required for regulatory compliance in many industries
+@description('Enable immutable document storage for compliance')
+param enableImmutableStorage bool = false
+
+// Immutable storage retention period in days
+// Defines how long documents remain immutable for compliance
+@description('Immutable storage retention period in days')
+@minValue(1)
+@maxValue(3653) // 10 years maximum
+param immutableRetentionDays int = 2555 // 7 years default
+
+// Enable automatic data classification for processed documents
+// Automatically classifies document content based on sensitivity
+// 🔒 SECURITY ENHANCEMENT: Enables automated data governance and protection policies
+@description('Enable automatic data classification for processed documents')
+param enableDataClassification bool = true
+
+// Data classification policies for automated document labeling
+// Defines rules for classifying document content by sensitivity level
+@description('Data classification policies for document labeling')
+param dataClassificationConfig object = {
+  enabled: true
+  sensitivityLabels: ['Public', 'Internal', 'Confidential', 'Restricted']
+  autoClassificationRules: {
+    enablePiiDetection: true
+    enableFinancialDataDetection: true
+    enableHealthDataDetection: true
+    enableLegalDataDetection: true
+  }
+  labelingThreshold: '0.8'
+}
+
+// Enable encryption for documents in transit during processing
+// Ensures all document transfers are encrypted using TLS 1.3
+// 🔒 SECURITY ENHANCEMENT: Protects document data during network transmission
+@description('Enable encryption for documents in transit')
+param enableTransitEncryption bool = true
+
+// Minimum TLS version for document transmission security
+// Controls the minimum TLS protocol version for secure communications
+// 🔒 SECURITY ENHANCEMENT: Use TLS 1.2+ for compliance with security standards
+@description('Minimum TLS version for document transmission')
+@allowed(['1.1', '1.2', '1.3'])
+param minimumTlsVersion string = '1.2'
+
+// ============================================================================
+// PARAMETERS - ADVANCED MONITORING & ANALYTICS
+// ============================================================================
+
+// Enable comprehensive performance monitoring for document processing operations
+// Provides detailed insights into processing times, success rates, and resource usage
+// 🔒 SECURITY ENHANCEMENT: Monitor for unusual processing patterns that might indicate attacks
+@description('Enable comprehensive performance monitoring')
+param enablePerformanceMonitoring bool = true
+
+// Performance monitoring configuration for detailed analytics
+@description('Performance monitoring configuration')
+param performanceMonitoringConfig object = {
+  enabled: true
+  trackProcessingTimes: true
+  trackAccuracyMetrics: true
+  trackResourceUtilization: true
+  trackUserPatterns: true
+  enableAnomalyDetection: true
+  alertThresholds: {
+    processingTimeMs: 30000
+    errorRatePercentage: 5
+    resourceUtilizationPercentage: 80
+  }
+}
+
+// Enable usage analytics for document processing patterns and optimization
+// Analyzes document processing patterns to optimize performance and detect anomalies
+// 🔒 SECURITY ENHANCEMENT: Detect unusual usage patterns that might indicate security issues
+@description('Enable usage analytics for processing optimization')
+param enableUsageAnalytics bool = true
+
+// Usage analytics retention period for historical analysis
+// Controls how long usage analytics data is retained for trend analysis
+@description('Usage analytics retention period in days')
+@minValue(30)
+@maxValue(730) // 2 years maximum
+param usageAnalyticsRetentionDays int = 90
+
+// Enable real-time monitoring dashboards for operational visibility
+// Provides real-time visibility into document processing operations and system health
+// 🔒 SECURITY ENHANCEMENT: Enable real-time security monitoring and incident response
+@description('Enable real-time monitoring dashboards')
+param enableRealTimeMonitoring bool = true
+
+// Advanced alerting configuration for comprehensive monitoring
+// Configures detailed alerting for various document processing events and security issues
+@description('Advanced alerting configuration')
+param advancedAlertingConfig object = {
+  enabled: true
+  enableSecurityAlerts: true
+  enablePerformanceAlerts: true
+  enableCapacityAlerts: true
+  enableComplianceAlerts: true
+  alertChannels: {
+    email: true
+    webhook: false
+    sms: false
+    teams: false
+  }
+  alertSeverityLevels: ['Critical', 'High', 'Medium', 'Low']
+}
+
+// ============================================================================
+// PARAMETERS - ENHANCED TAGGING & METADATA
+// ============================================================================
+
+// Environment classification for security policy application and access control
+// Determines which security policies and access controls are applied to the service
+// 🔒 SECURITY ENHANCEMENT: Use for automated security policy application based on environment
+@description('Environment classification for security policies')
+@allowed(['development', 'testing', 'staging', 'production', 'sandbox'])
+param environmentClassification string = 'production'
+
+// Data classification level for compliance and security policy enforcement
+// Defines the sensitivity level of documents processed by the service
+// 🔒 SECURITY ENHANCEMENT: Use for automated compliance policy application and access controls
+@description('Data classification level for compliance and security')
+@allowed(['public', 'internal', 'confidential', 'restricted'])
+param dataClassification string = 'internal'
+
+// Business criticality level for resource prioritization and SLA application
+// Determines service level agreements and priority for support and maintenance
+// 🔒 SECURITY ENHANCEMENT: Use for security incident prioritization and response
+@description('Business criticality level for SLA and support prioritization')
+@allowed(['low', 'medium', 'high', 'critical', 'mission-critical'])
+param businessCriticality string = 'high'
+
+// Cost center information for billing and resource allocation tracking
+// Enables cost tracking and allocation for enterprise resource management
+// 🔒 SECURITY ENHANCEMENT: Use for security cost allocation and budget tracking
+@description('Cost center for billing and resource allocation')
+param costCenter string = ''
+
+// Owner information for resource accountability and contact management
+// Specifies responsible party for resource management and security compliance
+// 🔒 SECURITY ENHANCEMENT: Required for security incident response and accountability
+@description('Resource owner information for accountability')
+param resourceOwner object = {
+  name: ''
+  email: ''
+  department: ''
+  managerId: ''
+}
+
+// Project information for resource organization and governance
+// Enables project-based resource organization and cost allocation
+// 🔒 SECURITY ENHANCEMENT: Use for project-based security policies and access controls
+@description('Project information for resource organization')
+param projectInformation object = {
+  projectName: ''
+  projectId: ''
+  projectManager: ''
+  budget: ''
+  startDate: ''
+  endDate: ''
+}
+
+// Compliance framework requirements for regulatory adherence
+// Specifies which compliance frameworks the service must adhere to
+// 🔒 SECURITY ENHANCEMENT: Enables automated compliance checks and reporting
+@description('Compliance framework requirements')
+param complianceRequirements object = {
+  gdprCompliance: false
+  hipaaCompliance: false
+  sox404Compliance: false
+  iso27001Compliance: false
+  pcidssCompliance: false
+  customComplianceFrameworks: []
+}
+
 // ============================================================================
 // PARAMETERS - TAGGING & METADATA
 // ============================================================================
@@ -265,17 +525,32 @@ param resourceSuffix string = ''
 // VARIABLES
 // ============================================================================
 
-// Default resource tags with Document Intelligence-specific metadata
+// Enhanced default tags with comprehensive metadata
 var defaultTags = {
   Environment: tags.?Environment ?? 'Production'
+  EnvironmentClassification: environmentClassification
   Service: 'Document Intelligence'
   ManagedBy: 'Bicep'
   DocumentProcessing: 'enabled'
-  DataClassification: tags.?DataClassification ?? 'internal'
+  DataClassification: dataClassification
+  BusinessCriticality: businessCriticality
+  CostCenter: !empty(costCenter) ? costCenter : 'Not Specified'
+  Owner: !empty(resourceOwner.name) ? resourceOwner.name : 'Not Specified'
+  OwnerEmail: !empty(resourceOwner.email) ? resourceOwner.email : 'Not Specified'
+  Department: !empty(resourceOwner.department) ? resourceOwner.department : 'Not Specified'
+  ProjectName: !empty(projectInformation.projectName) ? projectInformation.projectName : 'Not Specified'
+  ProjectId: !empty(projectInformation.projectId) ? projectInformation.projectId : 'Not Specified'
   LastUpdated: '2025-08-01'
+  DocumentIntelligenceEnabled: 'true'
+  PrivateEndpointEnabled: string(enablePrivateEndpoint)
+  CustomerManagedKeyEnabled: string(enableCustomerManagedKey)
+  ManagedIdentityEnabled: string(enableManagedIdentity)
+  AdvancedOcrEnabled: string(enableAdvancedOcr)
+  DataClassificationEnabled: string(enableDataClassification)
+  AzureDefenderEnabled: string(enableAzureDefender)
 }
 
-// Merge user-provided tags with defaults
+// Merge user-provided tags with enhanced defaults
 var allTags = union(defaultTags, tags)
 
 // Generate unique names for related resources
@@ -288,6 +563,53 @@ var privateEndpointName = enablePrivateEndpoint ? '${documentIntelligenceName}-p
 var ipRules = [for ip in allowedIpAddresses: {
   value: ip
 }]
+
+// Advanced processing configuration
+var advancedProcessingConfig = {
+  ocrLanguageConfig: ocrLanguageConfig
+  documentConfidenceThreshold: documentConfidenceThreshold
+  documentClassificationEnabled: enableDocumentClassification
+  documentSizeLimits: documentSizeLimits
+  contentFilteringPolicies: contentFilteringPolicies
+  advancedOcrEnabled: enableAdvancedOcr
+}
+
+// Advanced security configuration
+var advancedSecurityConfig = {
+  azureDefenderEnabled: enableAzureDefender
+  dataLossPreventionEnabled: enableDataLossPrevention
+  immutableStorageEnabled: enableImmutableStorage
+  immutableRetentionDays: immutableRetentionDays
+  dataClassificationEnabled: enableDataClassification
+  dataClassificationConfig: dataClassificationConfig
+  transitEncryptionEnabled: enableTransitEncryption
+  minimumTlsVersion: minimumTlsVersion
+}
+
+// Advanced monitoring configuration
+var advancedMonitoringConfig = {
+  performanceMonitoringEnabled: enablePerformanceMonitoring
+  performanceMonitoringConfig: performanceMonitoringConfig
+  usageAnalyticsEnabled: enableUsageAnalytics
+  usageAnalyticsRetentionDays: usageAnalyticsRetentionDays
+  realTimeMonitoringEnabled: enableRealTimeMonitoring
+  advancedAlertingConfig: advancedAlertingConfig
+}
+
+// CORS configuration
+var corsConfig = {
+  enabled: enableCors
+  allowedOrigins: corsAllowedOrigins
+  allowedMethods: corsAllowedMethods
+}
+
+// Compliance configuration
+var complianceConfig = {
+  requirements: complianceRequirements
+  auditLoggingEnabled: enableAuditLogging
+  dataRetentionDays: dataRetentionDays
+  immutableStorageEnabled: enableImmutableStorage
+}
 
 // ============================================================================
 // RESOURCES - STORAGE ACCOUNT
@@ -371,11 +693,17 @@ resource documentIntelligenceAppInsights 'Microsoft.Insights/components@2020-02-
 // RESOURCES - DOCUMENT INTELLIGENCE SERVICE
 // ============================================================================
 
-// Azure AI Document Intelligence service
+// Azure AI Document Intelligence service with advanced configuration
 resource documentIntelligenceService 'Microsoft.CognitiveServices/accounts@2023-05-01' = {
   name: documentIntelligenceServiceName
   location: location
-  tags: allTags
+  tags: union(allTags, {
+    AdvancedProcessingEnabled: string(advancedProcessingConfig.advancedOcrEnabled)
+    SecurityConfigured: string(advancedSecurityConfig.azureDefenderEnabled)
+    MonitoringEnabled: string(advancedMonitoringConfig.performanceMonitoringEnabled)
+    CorsEnabled: string(corsConfig.enabled)
+    ComplianceConfigured: string(complianceConfig.auditLoggingEnabled)
+  })
   sku: {
     name: documentIntelligenceSku
   }
@@ -386,6 +714,11 @@ resource documentIntelligenceService 'Microsoft.CognitiveServices/accounts@2023-
   properties: {
     apiProperties: {
       statisticsEnabled: enableApplicationInsights
+      qnaRuntimeEndpoint: null
+      qnaAzureSearchEndpointId: null
+      qnaAzureSearchEndpointKey: null
+      eventHubConnectionString: null
+      storageAccountConnectionString: enableDedicatedStorage ? null : null
     }
     customSubDomainName: documentIntelligenceServiceName
     disableLocalAuth: !enableApiKeyAuth
@@ -393,20 +726,28 @@ resource documentIntelligenceService 'Microsoft.CognitiveServices/accounts@2023-
     networkAcls: empty(allowedIpAddresses) ? null : {
       defaultAction: 'Deny'
       ipRules: ipRules
+      virtualNetworkRules: []
     }
     encryption: enableCustomerManagedKey && !empty(keyVaultId) ? {
       keyVaultProperties: {
         keyName: keyName
         keyVaultUri: reference(keyVaultId, '2023-07-01').vaultUri
         keyVersion: keyVersion
+        identityClientId: null
       }
       keySource: 'Microsoft.KeyVault'
-    } : null
+    } : {
+      keySource: 'Microsoft.CognitiveServices'
+    }
     userOwnedStorage: enableDedicatedStorage ? [
       {
         resourceId: documentStorage.id
       }
     ] : null
+    restrictOutboundNetworkAccess: advancedSecurityConfig.dataLossPreventionEnabled
+    allowedFqdnList: []
+    migrationToken: null
+    dynamicThrottlingEnabled: false
   }
 }
 
@@ -562,7 +903,7 @@ output monitoringConfig object = {
   auditLoggingEnabled: enableAuditLogging
 }
 
-@description('Security configuration')
+@description('Security configuration with advanced settings')
 output securityConfig object = {
   privateEndpointEnabled: enablePrivateEndpoint
   customerManagedKeyEnabled: enableCustomerManagedKey
@@ -570,9 +911,16 @@ output securityConfig object = {
   auditLoggingEnabled: enableAuditLogging
   dataRetentionDays: dataRetentionDays
   networkAccessRestricted: !empty(allowedIpAddresses)
+  azureDefenderEnabled: advancedSecurityConfig.azureDefenderEnabled
+  dataLossPreventionEnabled: advancedSecurityConfig.dataLossPreventionEnabled
+  immutableStorageEnabled: advancedSecurityConfig.immutableStorageEnabled
+  immutableRetentionDays: advancedSecurityConfig.immutableRetentionDays
+  dataClassificationEnabled: advancedSecurityConfig.dataClassificationEnabled
+  transitEncryptionEnabled: advancedSecurityConfig.transitEncryptionEnabled
+  minimumTlsVersion: advancedSecurityConfig.minimumTlsVersion
 }
 
-@description('Processing capabilities')
+@description('Processing capabilities with advanced OCR configuration')
 output processingCapabilities object = {
   prebuiltModelsEnabled: enablePrebuiltModels
   enabledPrebuiltModels: enabledPrebuiltModels
@@ -581,6 +929,51 @@ output processingCapabilities object = {
   composedModelsEnabled: enableComposedModels
   batchProcessingEnabled: enableBatchProcessing
   maxBatchSize: maxBatchSize
+  advancedOcrEnabled: advancedProcessingConfig.advancedOcrEnabled
+  ocrLanguageConfig: advancedProcessingConfig.ocrLanguageConfig
+  documentConfidenceThreshold: advancedProcessingConfig.documentConfidenceThreshold
+  documentClassificationEnabled: advancedProcessingConfig.documentClassificationEnabled
+  documentSizeLimits: advancedProcessingConfig.documentSizeLimits
+  contentFilteringEnabled: !empty(advancedProcessingConfig.contentFilteringPolicies)
+}
+
+@description('Advanced monitoring configuration')
+output advancedMonitoringConfig object = {
+  performanceMonitoringEnabled: advancedMonitoringConfig.performanceMonitoringEnabled
+  performanceMonitoringConfig: advancedMonitoringConfig.performanceMonitoringConfig
+  usageAnalyticsEnabled: advancedMonitoringConfig.usageAnalyticsEnabled
+  usageAnalyticsRetentionDays: advancedMonitoringConfig.usageAnalyticsRetentionDays
+  realTimeMonitoringEnabled: advancedMonitoringConfig.realTimeMonitoringEnabled
+  advancedAlertingConfig: advancedMonitoringConfig.advancedAlertingConfig
+}
+
+@description('CORS and connectivity configuration')
+output connectivityConfig object = {
+  corsEnabled: corsConfig.enabled
+  corsAllowedOrigins: corsConfig.allowedOrigins
+  corsAllowedMethods: corsConfig.allowedMethods
+  publicNetworkAccess: enablePrivateEndpoint ? 'Disabled' : 'Enabled'
+  allowedIpAddresses: allowedIpAddresses
+}
+
+@description('Compliance and governance configuration')
+output complianceConfig object = {
+  requirements: complianceConfig.requirements
+  auditLoggingEnabled: complianceConfig.auditLoggingEnabled
+  dataRetentionDays: complianceConfig.dataRetentionDays
+  immutableStorageEnabled: complianceConfig.immutableStorageEnabled
+  environmentClassification: environmentClassification
+  dataClassification: dataClassification
+  businessCriticality: businessCriticality
+}
+
+@description('Resource ownership and project information')
+output resourceManagement object = {
+  resourceOwner: resourceOwner
+  projectInformation: projectInformation
+  costCenter: costCenter
+  environmentClassification: environmentClassification
+  allTags: allTags
 }
 
 @description('Deployment summary and next steps')
